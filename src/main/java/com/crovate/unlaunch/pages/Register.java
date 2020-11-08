@@ -22,6 +22,7 @@ public class Register {
     String url = "https://app.unlaunch.io";
     String otpUrl = "https://app.unlaunch.io/otp";
     String projectUrl = "https://app.unlaunch.io/project";
+    String otpSucessUrl = "https://app.unlaunch.io/company";
 
     public void doRegsiter() {
         Browser.goTo(url);
@@ -55,6 +56,17 @@ public class Register {
         verifyButton.submit();
     }
 
+    public void company() {
+        Browser.goTo(otpSucessUrl);
+
+        WebElement cardElement = Browser.driver.findElement(By.className("div.card-title"));
+        if (cardElement.isDisplayed()) {
+
+            WebElement createProjButton = Browser.driver.findElement(By.cssSelector("button[type=submit]"));
+            createProjButton.submit();
+        }
+    }
+
     public void createFirstProject() {
         Browser.goTo(projectUrl);
 
@@ -73,9 +85,13 @@ public class Register {
 
     public void deleteUserBeforeRegister() throws MalformedURLException, IOException {
 
+        System.out.println("DELETE_USER");
         URL url = new URL("https://api.unlaunch.io/api/v1/cleansweepuser?email=tilikum-test-123@gmail.com");
         HttpURLConnection con = (HttpURLConnection) url.openConnection();
         con.setRequestMethod("DELETE");
         con.setRequestProperty("X-Unlaunch-Secret", "49345A");
+        
+        int responseCode = con.getResponseCode();
+        System.out.println("response code : " + responseCode);
     }
 }

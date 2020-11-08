@@ -16,7 +16,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 public class Browser {
 
     static {
-        System.setProperty("webdriver.chrome.driver", "/home/ghauri/Downloads/chromedriver");
+        System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver");
     }
 
     public static WebDriver driver = new ChromeDriver();

@@ -24,7 +24,7 @@ public class LoginTest {
     // This method will remove when other testcases are introduced.
     @AfterClass
     public static void close() {
-        Browser.close();
+//        Browser.close();
     }
     /**
      * Test of doLogin method, of class Login.
