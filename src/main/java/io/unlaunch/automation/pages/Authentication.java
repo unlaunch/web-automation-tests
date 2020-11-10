@@ -14,30 +14,43 @@ import org.openqa.selenium.WebElement;
  *
  * @author ghauri
  */
-public class Login {
+public class Authentication {
     
-    String url = "https://app.unlaunch.io";
-    
-    public void doLogin() {
-        Browser.driver.manage().window().maximize();
-        Browser.driver.manage().deleteAllCookies();
-        Browser.driver.manage().timeouts().pageLoadTimeout(40, TimeUnit.SECONDS);
-        Browser.driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+    public void login(String emailAddress, String password) {
 
-        Browser.goTo(url);
-        
         WebElement emailElement = Browser.driver.findElement(By.cssSelector("input.__at_email"));
-        emailElement.sendKeys("fghauri@crovateoffshore.com");
+        emailElement.sendKeys(emailAddress);
+
         WebElement passwordElement = Browser.driver.findElement(By.cssSelector("input.__at_password"));
-        passwordElement.sendKeys("Orca1234");
+        passwordElement.sendKeys(password);
+
         WebElement loginButton = Browser.driver.findElement(By.cssSelector("button.__at_btn_login"));
         loginButton.submit();
 
     }
 
-    boolean isLoggedIn() throws InterruptedException {
+    boolean isLoggedIn() {
+        Browser.sleep(5);
+        
         WebElement sidebar = Browser.driver.findElement(By.cssSelector("div.__at_sidebar"));
         return sidebar.isDisplayed();
+    }
+    
+    public void logout() {
+        WebElement userEmail = Browser.driver.findElement(By.id("bd-versions"));
+        userEmail.click();
+        
+        WebElement logoutItem = Browser.driver.findElement(By.linkText("Logout"));
+        logoutItem.click();
+    }
+    
+    public boolean verifyLogout() {
+        Browser.waitUntilUrlLoadsOrTimeout("/login", 5);
+        
+        Browser.sleep(2);
+        
+        WebElement loginButton = Browser.driver.findElement(By.cssSelector("button.__at_btn_login"));
+        return loginButton.isDisplayed();
     }
     
 }

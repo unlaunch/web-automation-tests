@@ -21,7 +21,7 @@ import org.openqa.selenium.WebElement;
  */
 public class Registration {
 
-    public void doRegister() {
+    public void register() {
         Browser.goTo(Browser.hostname);
 
         WebElement accountElement = Browser.driver.findElement(By.linkText("Create Account"));

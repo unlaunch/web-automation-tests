@@ -15,6 +15,8 @@ import org.junit.jupiter.api.*;
 public class AllTests {
 
     private Registration registration = new Registration();
+    private Authentication authentication = new Authentication();
+    private FeatureFlags featureFlags = new FeatureFlags();
 
     @BeforeAll
     public static void init() {
@@ -28,7 +30,7 @@ public class AllTests {
     @Order(1)
     public void testFillNewRegistrationForm() throws IOException{
         registration.deleteUserBeforeRegister();
-        registration.doRegister();
+        registration.register();
     }
 
     @Test
@@ -60,6 +62,44 @@ public class AllTests {
     public void testVerifySuccessfulLogin() {
         registration.verifySuccessfullLogin();
     }
+    
+    @Test
+    @Order(7)
+    public void testLogout() {
+        authentication.logout();
+    }
+   
+    @Test
+    @Order(7)
+    public void testVerifyLogout() {
+        Assertions.assertTrue(authentication.verifyLogout() == true);  
+    }
+    
+    @Test
+    @Order(8)
+    public void testLogin() {
+        authentication.login(Browser.emailAddress, "Orca123");
+    }
+
+    @Test
+    @Order(9)
+    public void testIsLoggedIn() {
+        authentication.isLoggedIn();
+    }
+    
+    @Test
+    @Order(10)
+    public void testCreateFeatureFlag() {
+        featureFlags.createFeatureFlag(2);
+    }
+    
+    @Test
+    @Order(11)
+    public void testArchiveFlag() {
+        featureFlags.archiveFlag();
+    }
+    
+    
 
     @AfterAll
     public static void finish() {
