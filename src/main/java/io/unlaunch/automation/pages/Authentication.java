@@ -6,7 +6,6 @@
 package io.unlaunch.automation.pages;
 
 import io.unlaunch.automation.Browser;
-import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
@@ -17,7 +16,9 @@ import org.openqa.selenium.WebElement;
 public class Authentication {
     
     public void login(String emailAddress, String password) {
-
+        
+        Browser.waitForPageLoad();
+        
         WebElement emailElement = Browser.driver.findElement(By.cssSelector("input.__at_email"));
         emailElement.sendKeys(emailAddress);
 

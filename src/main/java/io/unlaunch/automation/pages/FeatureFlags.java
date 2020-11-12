@@ -6,11 +6,13 @@
 package io.unlaunch.automation.pages;
 
 import io.unlaunch.automation.Browser;
-import java.util.Set;
+import static io.unlaunch.automation.Browser.driver;
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 /**
  *
@@ -18,15 +20,15 @@ import org.openqa.selenium.interactions.Actions;
  */
 public class FeatureFlags {
 
-    public void createFeatureFlag(int numberOfVariations) {
-        Browser.sleep(5);
-
-        Browser.goTo(Browser.hostname);
+    public void createFeatureFlag(String name, String key, int numberOfVariations) {
+        Browser.sleep(15);
 
         WebElement flagLink = Browser.driver.findElement(By.linkText("Feature Flags"));
         flagLink.click();
 
-        WebElement btnCreateFlag = Browser.driver.findElement(By.className("__at_btn_createFlag"));
+        Browser.sleep(15);
+
+        WebElement btnCreateFlag = Browser.driver.findElement(By.className("__at_btn_create"));
         btnCreateFlag.click();
 
         Browser.sleep(5);
@@ -34,26 +36,29 @@ public class FeatureFlags {
         WebElement modal = Browser.driver.switchTo().activeElement();
         System.out.println("tag name " + modal.getTagName());
 
-        WebElement name = modal.findElement(By.name("name"));
-        name.sendKeys("test-archive-flag");
+        WebElement nameFlag = modal.findElement(By.name("name"));
+        nameFlag.sendKeys(name);
 
-        WebElement key = modal.findElement(By.name("key"));
-        key.sendKeys("test-archive-flag");
+        WebElement flahKey = modal.findElement(By.name("key"));
+        flahKey.sendKeys(key);
 
         WebElement description = modal.findElement(By.name("description"));
-        description.sendKeys("Test Archive feature");
+        description.sendKeys("Test feature flag");
 
         int i = 1;
+        String[] s = {"on", "off", "gray"};
+
         while (numberOfVariations >= i) {
 
-            if (numberOfVariations > 2) {
-                WebElement btnAddVariation = modal.findElement(By.linkText("+ Add Variation"));
+            if (i > 2) {
+                WebElement btnAddVariation = modal.findElement(By.className("__at_btn_var_add"));
                 btnAddVariation.click();
             }
 
             int n = i - 1;
             WebElement var = modal.findElement(By.name("variations[" + n + "].key"));
-            var.sendKeys("var" + i);
+            var.sendKeys(Keys.BACK_SPACE);
+            var.sendKeys(s[n]);
             i++;
         }
 
@@ -64,31 +69,27 @@ public class FeatureFlags {
     public void archiveFlag() {
         Browser.sleep(10);
 
-        WebElement flagLink = Browser.driver.findElement(By.partialLinkText("flag"));
+        WebElement flagLink = Browser.driver.findElement(By.linkText("test-archive-flag"));
         flagLink.click();
 
         Browser.sleep(5);
 
-        String actual = Browser.driver.getWindowHandle();
         WebElement settings = Browser.driver.findElement(By.id("nav-settings-tab"));
         settings.click();
 
         Browser.sleep(10);
 
-        WebElement btnArchive = Browser.driver.findElement(By.cssSelector("button[type=button]"));
-        
+        WebElement btnArchive = Browser.driver.findElement(By.className("__at_btn_archive"));
         Browser.sleep(2);
         btnArchive.click();
 
         Browser.sleep(5);
 
-        WebElement btnYes = Browser.driver.findElement(By.linkText("Yes"));
-        btnYes.click();
-
-        Browser.sleep(2);
-
-        WebElement btnOkay = Browser.driver.findElement(By.linkText("Okay"));
-        btnOkay.click();
+        driver.findElement(By.cssSelector(".react-confirm-alert-button-group > button:nth-child(1)")).click();
+        
+        Browser.sleep(5);
+        
+        driver.findElement(By.cssSelector(".\\__at_btn_ok")).click();
 
     }
 

@@ -5,9 +5,11 @@
  */
 package io.unlaunch.automation;
 
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 /**
  *
@@ -21,6 +23,7 @@ public class Browser {
     }
 
     public static final String hostname = "https://app.unlaunch.io";
+//    public static final String hostname = "http://localhost:3001";
 
     public static final String emailAddress = "unlaunch.test@gmail.com";
 
@@ -71,6 +74,18 @@ public class Browser {
         driver.quit();
     }
 
-
+    public static void waitForPageLoad() {
+        ExpectedCondition<Boolean> condition = (WebDriver driver1) -> 
+                ((JavascriptExecutor) driver1).executeScript("return document.readyState")
+                        .toString()
+                        .equals("complete");
+        try {
+            Thread.sleep(1000);
+            WebDriverWait wait = new WebDriverWait(driver, 30);
+            wait.until(condition);
+        } catch (Exception e) {
+            throw new RuntimeException("Timeout waiting for page load request to complete");
+        }
+    }
 
 }
