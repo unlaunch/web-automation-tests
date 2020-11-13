@@ -28,7 +28,7 @@ public class Targeting {
 
         Browser.sleep(1);
 
-        WebElement on = Browser.driver.findElement(By.cssSelector("div.__at_multiselect_oon div div div input"));
+        WebElement on = Browser.driver.findElement(By.cssSelector("div.__at_multiselect_on div div div input"));
         for (int i = 0; i < 15; i++) {
             on.sendKeys(String.valueOf(i));
             on.sendKeys(Keys.ENTER);
@@ -62,7 +62,7 @@ public class Targeting {
 
         Browser.sleep(2);
 
-        WebElement on = Browser.driver.findElement(By.cssSelector("div.__at_multiselect_oon div div div input"));
+        WebElement on = Browser.driver.findElement(By.cssSelector("div.__at_multiselect_on div div div input"));
         for (int i = 0; i < 50; i++) {
             on.sendKeys(String.valueOf(i));
             on.sendKeys(Keys.ENTER);
@@ -79,7 +79,7 @@ public class Targeting {
     public void addWhitelistToOff() {
         Browser.sleep(3);
 
-        WebElement off = Browser.driver.findElement(By.cssSelector("div.__at_multiselect_ofoff div div div input"));
+        WebElement off = Browser.driver.findElement(By.cssSelector("div.__at_multiselect_off div div div input"));
         for (int i = 51; i < 76; i++) {
             off.sendKeys(String.valueOf(i));
             off.sendKeys(Keys.ENTER);
@@ -96,14 +96,14 @@ public class Targeting {
     public void removeWhiteList() {
         Browser.sleep(2);
 
-        WebElement on = Browser.driver.findElement(By.cssSelector("div.__at_multiselect_oon div div div input"));
+        WebElement on = Browser.driver.findElement(By.cssSelector("div.__at_multiselect_on div div div input"));
         for (int i = 0; i < 15; i++) {
             on.sendKeys(Keys.BACK_SPACE);
         }
 
         Browser.sleep(2);
 
-        WebElement off = Browser.driver.findElement(By.cssSelector("div.__at_multiselect_ofoff div div div input"));
+        WebElement off = Browser.driver.findElement(By.cssSelector("div.__at_multiselect_off div div div input"));
         for (int i = 0; i < 15; i++) {
             off.sendKeys(Keys.BACK_SPACE);
         }
@@ -129,11 +129,11 @@ public class Targeting {
         defaultRule.sendKeys("percentageRollout");
         defaultRule.sendKeys(Keys.ENTER);
 
-        WebElement on = Browser.driver.findElement(By.cssSelector("input.__at_perc_oon"));
+        WebElement on = Browser.driver.findElement(By.cssSelector("input.__at_perc_on"));
         on.sendKeys(Keys.BACK_SPACE);
         on.sendKeys(val1);
 
-        WebElement off = Browser.driver.findElement(By.cssSelector("input.__at_perc_ofoff"));
+        WebElement off = Browser.driver.findElement(By.cssSelector("input.__at_perc_off"));
         off.sendKeys(Keys.BACK_SPACE);
         off.sendKeys(val2);
 
