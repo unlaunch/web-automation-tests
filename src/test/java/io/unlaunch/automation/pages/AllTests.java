@@ -168,21 +168,21 @@ public class AllTests {
     @Test
     @Order(22)
     public void testDefaultVariationToOnVar() {
-        targeting.setDefaultRule("on");
+        targeting.setDefaultVariation("on");
     }
     
     
     @Test
     @Order(23)
     public void testDefaultVariationToOffVar() {
-        targeting.setDefaultRule("off");
+        targeting.setDefaultVariation("off");
     }
     
     
     @Test
     @Order(24)
     public void testDefaultVariationToGrayVar() {
-        targeting.setDefaultRule("gray");
+        targeting.setDefaultVariation("gray");
     }
     
     @Test
@@ -205,12 +205,36 @@ public class AllTests {
     
     @Test
     @Order(28)
+    public void testAddTargettingRuleForString() {
+        targeting.addTargettingRule("device","String","ABCS",1);
+    }
+    
+    @Test
+    @Order(29)
+    public void testAddTargettingRuleForInt() {
+        targeting.addTargettingRule("ltv","Number","123",2);
+    }
+    
+    @Test
+    @Order(30)
+    public void testAddTargettingRuleForBoolean() {
+        targeting.addTargettingRule("paid","Boolean","true",3);
+    }
+     
+    @Test
+    @Order(31)
+    public void testDelTargettingRuleForInt() {
+        targeting.delTargettingRule(2);
+    }
+    
+    @Test
+    @Order(32)
     public void testCreateFeatureFlagForVariationPage() {
         featureFlags.createFeatureFlag("test-flag-2-var", "test-flag-2-var", 2);
     }
 
     @Test
-    @Order(29)
+    @Order(33)
     public void testAddVariation() {
         variation.addVariation();
     }

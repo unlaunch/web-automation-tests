@@ -7,6 +7,7 @@ package io.unlaunch.automation.pages;
 
 import io.unlaunch.automation.Browser;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
@@ -15,32 +16,23 @@ import org.openqa.selenium.support.ui.Select;
  * @author ghauri
  */
 public class Attributes {
- 
-    public void createAttribute(String name, String type) { 
-        Browser.sleep(5);
+
+    public void createAttribute(String name, String type) {
+        Browser.sleep(2);
         
-        WebElement attrLink = Browser.driver.findElement(By.className("__at_attributes"));
+        WebElement attrLink = Browser.driver.findElement(By.linkText("Attributes"));
         attrLink.click();
 
-        Browser.sleep(5);
-        
-        WebElement btnCreate = Browser.driver.findElement(By.className("__at_btn_create_attr"));
-        btnCreate.click();
-        
-        Browser.sleep(5);
-        
-        WebElement modal = Browser.driver.switchTo().activeElement();
-        WebElement attName = modal.findElement(By.className("__at_name"));
-        attName.sendKeys(name);
-        
-        WebElement attType = modal.findElement(By.className("__at_type"));
-        Select selectType = new Select(attType);
-        selectType.selectByVisibleText(type);
-        
-        Browser.sleep(5);
-        
-        WebElement save = Browser.driver.findElement(By.className("__at_att_save"));
+        Browser.sleep(3);
+
+        Browser.driver.findElement(By.cssSelector("button.__at_btn_create")).click();
+        Browser.sleep(3);
+
+        Browser.driver.findElement(By.cssSelector("input.__at_name")).sendKeys(name);
+        Select attrType = new Select(Browser.driver.findElement(By.cssSelector("select.__at_type")));
+        attrType.selectByVisibleText(type);
+
+        WebElement save = Browser.driver.findElement(By.cssSelector("button.__at_btn_save"));
         save.submit();
-        
     }
 }
