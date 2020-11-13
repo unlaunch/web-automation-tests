@@ -6,6 +6,7 @@
 package io.unlaunch.automation.pages;
 
 import io.unlaunch.automation.Browser;
+import io.unlaunch.automation.pages.featuerflag.Configuration;
 import io.unlaunch.automation.pages.featuerflag.Targeting;
 import io.unlaunch.automation.pages.featuerflag.Variation;
 import java.io.IOException;
@@ -23,6 +24,7 @@ public class AllTests {
     private Targeting targeting = new Targeting();
     private Attributes attributes = new Attributes();
     private Variation variation = new Variation();
+    private Configuration configuration = new Configuration();
 
     @BeforeAll
     public static void init() {
@@ -244,6 +246,18 @@ public class AllTests {
     @Order(33)
     public void testAddVariation() {
         variation.addVariation();
+    }
+    
+    @Test
+    @Order(34)
+    public void testCreateFeatureFlagForConf() {
+        featureFlags.createFeatureFlag("test-flag-3-conf", "test-flag-3-conf", 3);
+    }
+    
+    @Test
+    @Order(35)
+    public void testAddVariantConfigurations() {
+        configuration.addConfiguration();
     }
     
     @AfterAll
