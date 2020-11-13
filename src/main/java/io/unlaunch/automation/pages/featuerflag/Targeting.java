@@ -21,35 +21,35 @@ public class Targeting {
 
     public void addWhitelist() {
 
-        Browser.sleep(10);
-
-        WebElement targetUser = Browser.driver.findElement(By.cssSelector(".\\__at_btn_add_whitelist"));
-        targetUser.click();
-
         Browser.sleep(2);
 
-        WebElement on = Browser.driver.findElement(By.id("react-select-4-input"));
+        WebElement targetUser = Browser.driver.findElement(By.cssSelector("button.__at_btn_add_whitelist"));
+        targetUser.click();
+
+        Browser.sleep(1);
+
+        WebElement on = Browser.driver.findElement(By.cssSelector("div.__at_multiselect_oon div div div input"));
         for (int i = 0; i < 15; i++) {
             on.sendKeys(String.valueOf(i));
             on.sendKeys(Keys.ENTER);
         }
-        WebElement off = Browser.driver.findElement(By.id("react-select-5-input"));
+        WebElement off = Browser.driver.findElement(By.cssSelector("div.__at_multiselect_ofoff div div div input"));
 
         for (int i = 0; i < 15; i++) {
             off.sendKeys(String.valueOf(i) + "0");
             off.sendKeys(Keys.ENTER);
         }
-        WebElement gray = Browser.driver.findElement(By.id("react-select-6-input"));
+        WebElement gray = Browser.driver.findElement(By.cssSelector("div.__at_multiselect_gray div div div input"));
         for (int i = 0; i < 15; i++) {
             gray.sendKeys(String.valueOf(i) + "00");
             gray.sendKeys(Keys.ENTER);
         }
 
-        Browser.driver.findElement(By.cssSelector(".\\__at_btn_save")).click();
+        Browser.driver.findElement(By.cssSelector("button.__at_btn_save")).click();
 
         Browser.sleep(5);
 
-        Browser.driver.findElement(By.cssSelector(".\\__at_btn_ok")).click();
+        Browser.driver.findElement(By.cssSelector("button.__at_btn_ok")).click();
 
     }
 
@@ -86,40 +86,40 @@ public class Targeting {
             off.sendKeys(Keys.ENTER);
         }
         
-        Browser.driver.findElement(By.cssSelector(".\\__at_btn_save")).click();
+        Browser.driver.findElement(By.cssSelector("button.__at_btn_save")).click();
 
-        Browser.sleep(5);
+        Browser.sleep(3);
 
-        Browser.driver.findElement(By.cssSelector(".\\__at_btn_ok")).click();
+        Browser.driver.findElement(By.cssSelector("button.__at_btn_ok")).click();
 
     }
 
     public void removeWhiteList() {
-        Browser.sleep(10);
+        Browser.sleep(2);
 
-        WebElement on = Browser.driver.findElement(By.id("react-select-4-input"));
+        WebElement on = Browser.driver.findElement(By.cssSelector("div.__at_multiselect_oon div div div input"));
         for (int i = 0; i < 15; i++) {
             on.sendKeys(Keys.BACK_SPACE);
         }
         
-        Browser.sleep(10);
+        Browser.sleep(2);
         
-        WebElement off = Browser.driver.findElement(By.id("react-select-5-input"));
+        WebElement off = Browser.driver.findElement(By.cssSelector("div.__at_multiselect_ofoff div div div input"));
         for (int i = 0; i < 15; i++) {
             off.sendKeys(Keys.BACK_SPACE);
         }
-        Browser.sleep(10);
+        Browser.sleep(2);
         
-        WebElement gray = Browser.driver.findElement(By.id("react-select-6-input"));
+        WebElement gray = Browser.driver.findElement(By.cssSelector("div.__at_multiselect_gray div div div input"));
         for (int i = 0; i < 15; i++) {
             gray.sendKeys(Keys.BACK_SPACE);
         }
         
-        Browser.sleep(5);
-        Browser.driver.findElement(By.className("__at_btn_save")).click();
+        Browser.sleep(2);
+        Browser.driver.findElement(By.cssSelector("button.__at_btn_save")).click();
 
-        Browser.sleep(5);
-        Browser.driver.findElement(By.className("__at_okay")).click();
+        Browser.sleep(2);
+        Browser.driver.findElement(By.cssSelector("button.__at_btn_ok")).click();
 
     }
 
