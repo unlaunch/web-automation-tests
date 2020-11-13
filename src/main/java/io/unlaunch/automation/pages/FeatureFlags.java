@@ -7,12 +7,8 @@ package io.unlaunch.automation.pages;
 
 import io.unlaunch.automation.Browser;
 import static io.unlaunch.automation.Browser.driver;
-import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 /**
  *
@@ -39,26 +35,27 @@ public class FeatureFlags {
         WebElement nameFlag = modal.findElement(By.name("name"));
         nameFlag.sendKeys(name);
 
-        WebElement flahKey = modal.findElement(By.name("key"));
-        flahKey.sendKeys(key);
+//        WebElement flahKey = modal.findElement(By.name("key"));
+//        flahKey.sendKeys(key);
 
         WebElement description = modal.findElement(By.name("description"));
         description.sendKeys("Test feature flag");
 
         int i = 1;
-        String[] s = {"on", "off", "gray"};
+        String[] s = {"gray"};
 
         while (numberOfVariations >= i) {
 
             if (i > 2) {
                 WebElement btnAddVariation = modal.findElement(By.className("__at_btn_var_add"));
                 btnAddVariation.click();
-            }
 
-            int n = i - 1;
-            WebElement var = modal.findElement(By.name("variations[" + n + "].key"));
-            var.sendKeys(Keys.BACK_SPACE);
-            var.sendKeys(s[n]);
+                Browser.sleep(5);
+                
+                int n = i - 1;
+                WebElement var = modal.findElement(By.name("variations[" + n + "].key"));
+                var.sendKeys(s[0]);
+            }
             i++;
         }
 
@@ -67,11 +64,6 @@ public class FeatureFlags {
     }
 
     public void archiveFlag() {
-        Browser.sleep(10);
-
-        WebElement flagLink = Browser.driver.findElement(By.linkText("test-archive-flag"));
-        flagLink.click();
-
         Browser.sleep(5);
 
         WebElement settings = Browser.driver.findElement(By.id("nav-settings-tab"));
@@ -86,9 +78,9 @@ public class FeatureFlags {
         Browser.sleep(5);
 
         driver.findElement(By.cssSelector(".react-confirm-alert-button-group > button:nth-child(1)")).click();
-        
+
         Browser.sleep(5);
-        
+
         driver.findElement(By.cssSelector(".\\__at_btn_ok")).click();
 
     }

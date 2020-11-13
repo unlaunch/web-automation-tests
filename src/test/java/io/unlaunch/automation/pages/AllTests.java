@@ -7,6 +7,7 @@ package io.unlaunch.automation.pages;
 
 import io.unlaunch.automation.Browser;
 import io.unlaunch.automation.pages.featuerflag.Targeting;
+import io.unlaunch.automation.pages.featuerflag.Variation;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
@@ -20,6 +21,7 @@ public class AllTests {
     private FeatureFlags featureFlags = new FeatureFlags();
     private Targeting targeting = new Targeting();
     private Attributes attributes = new Attributes();
+    private Variation variation = new Variation();
 
     @BeforeAll
     public static void init() {
@@ -201,8 +203,18 @@ public class AllTests {
         attributes.createAttribute("paid", "Boolean");
     }
     
-    
+    @Test
+    @Order(28)
+    public void testCreateFeatureFlagForVariationPage() {
+        featureFlags.createFeatureFlag("test-flag-2-var", "test-flag-2-var", 2);
+    }
 
+    @Test
+    @Order(29)
+    public void testAddVariation() {
+        variation.addVariation();
+    }
+    
     @AfterAll
     public static void finish() {
         // Comment this if you want to leave the browser open
