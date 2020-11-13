@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 import org.junit.jupiter.api.*;
+import org.openqa.selenium.By;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class AllTests {
@@ -206,6 +207,12 @@ public class AllTests {
     @Test
     @Order(28)
     public void testAddTargettingRuleForString() {
+        Browser.sleep(2);
+        Browser.driver.findElement(By.linkText("Feature Flags")).click();
+
+        Browser.sleep(3);
+        Browser.driver.findElement(By.linkText("test-flag")).click();
+
         targeting.addTargettingRule("device","String","ABCS",1);
     }
     
