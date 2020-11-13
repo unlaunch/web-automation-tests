@@ -42,7 +42,7 @@ public class FeatureFlags {
         description.sendKeys("Test feature flag");
 
         int i = 1;
-        String[] s = {"gray"};
+        String[] s = {"gray","black"};
 
         while (numberOfVariations >= i) {
 
@@ -52,9 +52,10 @@ public class FeatureFlags {
 
                 Browser.sleep(5);
                 
-                int n = i - 1;
-                WebElement var = modal.findElement(By.name("variations[" + n + "].key"));
-                var.sendKeys(s[0]);
+                int varIndex = i - 1;
+                int sId = numberOfVariations -i;
+                WebElement var = modal.findElement(By.name("variations[" + varIndex + "].key"));
+                var.sendKeys(s[sId]);
             }
             i++;
         }

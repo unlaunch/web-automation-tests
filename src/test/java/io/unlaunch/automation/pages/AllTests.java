@@ -9,6 +9,7 @@ import io.unlaunch.automation.Browser;
 import io.unlaunch.automation.pages.featuerflag.Configuration;
 import io.unlaunch.automation.pages.featuerflag.Targeting;
 import io.unlaunch.automation.pages.featuerflag.Variation;
+import io.unlaunch.automation.pages.featuerflag.Settings;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
@@ -25,6 +26,7 @@ public class AllTests {
     private Attributes attributes = new Attributes();
     private Variation variation = new Variation();
     private Configuration configuration = new Configuration();
+    private Settings settings = new Settings();
 
     @BeforeAll
     public static void init() {
@@ -258,6 +260,30 @@ public class AllTests {
     @Order(35)
     public void testAddVariantConfigurations() {
         configuration.addConfiguration();
+    }
+    
+    @Test
+    @Order(36)
+    public void testCreateFeatureFlagForSettings() {
+        featureFlags.createFeatureFlag("test-flag-4-settings", "test-flag-4-settings", 4);
+    }
+    
+    @Test
+    @Order(37)
+    public void testChangeFlagName() {
+        settings.changeFlagName();
+    }
+    
+    @Test
+    @Order(38)
+    public void testChangeFlagDescription() {
+        settings.changeFlagDescription();
+    }
+    
+    @Test
+    @Order(39)
+    public void testSetFlagToClientSide() {
+        settings.setFlagToClientSide();
     }
     
     @AfterAll
