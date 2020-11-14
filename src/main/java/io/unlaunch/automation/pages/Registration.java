@@ -89,9 +89,9 @@ public class Registration {
 
         Browser.sleep(2); // Give page time to load
 
-        WebElement btn = Browser.driver.findElement(By.className("__at_btn_createFlag"));
+        WebElement btn = Browser.driver.findElement(By.className("__at_btn_create"));
         if (!btn.isDisplayed()) {
-            throw new RuntimeException("cannot verify it login was sucessful. Create Flag Button wasn't found");
+            throw new RuntimeException("cannot verify it login was successful. Create Flag Button wasn't found");
         }
     }
 

@@ -81,135 +81,135 @@ public class AllTests {
     }
    
     @Test
-    @Order(7)
+    @Order(8)
     public void testVerifyLogout() {
         Assertions.assertTrue(authentication.verifyLogout() == true);  
     }
     
     @Test
-    @Order(8)
+    @Order(9)
     public void testLogin() {
         authentication.login(Browser.emailAddress, "Orca123");
     }
 
     @Test
-    @Order(9)
+    @Order(10)
     public void testIsLoggedIn() {
         authentication.isLoggedIn();
     }
     
     @Test
-    @Order(10)
+    @Order(11)
     public void testCreateFeatureFlag() {
         featureFlags.createFeatureFlag("test-archive-flag","test-archive-flag", 2);
     }
     
     @Test
-    @Order(11)
+    @Order(12)
     public void testArchiveFlag() {
         featureFlags.archiveFlag();
     }
     
     @Test
-    @Order(12)
+    @Order(13)
     public void testCreateFlagWith3Variations() {
         featureFlags.createFeatureFlag("test-flag", "test-flag", 3);
     }
     
     @Test
-    @Order(13)
+    @Order(14)
     public void testAddWhiteList() {
         targeting.addWhitelist();
     }
     
     @Test
-    @Order(14)
+    @Order(15)
     public void testclearWhiteList() {
         targeting.removeWhiteList();
     }
     
     @Test
-    @Order(15)
+    @Order(16)
     public void testAdd50UsersToOnVariation() {
         targeting.addWhitelistToOn();
     }
     
     @Test
-    @Order(16)
+    @Order(17)
     public void testAdd25UsersToOffVariation() {
         targeting.addWhitelistToOff();
     }
     
     @Test
-    @Order(17)
+    @Order(18)
     public void testDefaultRulePercentageRollout() {
         targeting.setDefaultRulePercentageRollout("33", "33", "34");
     }
     
     @Test
-    @Order(18)
+    @Order(19)
     public void testDefaultRulePercentageRolloutAgain() {
         targeting.setDefaultRulePercentageRollout("98", "1", "1");
     }
    
     @Test
-    @Order(19)
+    @Order(20)
     public void testDefaultRuleToGrayVariation() {
         targeting.setDefaultRule("gray");
     }
    
     @Test
-    @Order(20)
+    @Order(21)
     public void testDefaultRuleToOnVariation() {
         targeting.setDefaultRule("on");
     }
     
     @Test
-    @Order(21)
+    @Order(22)
     public void testDefaultRuleToOffVariation() {
         targeting.setDefaultRule("off");
     }
     
     @Test
-    @Order(22)
+    @Order(23)
     public void testDefaultVariationToOnVar() {
         targeting.setDefaultVariation("on");
     }
     
     
     @Test
-    @Order(23)
+    @Order(24)
     public void testDefaultVariationToOffVar() {
         targeting.setDefaultVariation("off");
     }
     
     
     @Test
-    @Order(24)
+    @Order(25)
     public void testDefaultVariationToGrayVar() {
         targeting.setDefaultVariation("gray");
     }
     
     @Test
-    @Order(25)
+    @Order(26)
     public void testCreateNumberAttribute() {
         attributes.createAttribute("ltv", "Number");
     }
     
     @Test
-    @Order(26)
+    @Order(27)
     public void testCreateStringAttribute() {
         attributes.createAttribute("device", "String");
     }
     
     @Test
-    @Order(27)
+    @Order(28)
     public void testCreateBooleanAttribute() {
         attributes.createAttribute("paid", "Boolean");
     }
     
     @Test
-    @Order(28)
+    @Order(29)
     public void testAddTargettingRuleForString() {
         Browser.sleep(2);
         Browser.driver.findElement(By.linkText("Feature Flags")).click();
@@ -221,67 +221,67 @@ public class AllTests {
     }
     
     @Test
-    @Order(29)
+    @Order(30)
     public void testAddTargettingRuleForInt() {
         targeting.addTargettingRule("ltv","Number","123",2);
     }
     
     @Test
-    @Order(30)
+    @Order(31)
     public void testAddTargettingRuleForBoolean() {
         targeting.addTargettingRule("paid","Boolean","true",3);
     }
      
     @Test
-    @Order(31)
+    @Order(32)
     public void testDelTargettingRuleForInt() {
         targeting.delTargettingRule(2);
     }
     
     @Test
-    @Order(32)
+    @Order(33)
     public void testCreateFeatureFlagForVariationPage() {
         featureFlags.createFeatureFlag("test-flag-2-var", "test-flag-2-var", 2);
     }
 
     @Test
-    @Order(33)
+    @Order(34)
     public void testAddVariation() {
         variation.addVariation();
     }
     
     @Test
-    @Order(34)
+    @Order(35)
     public void testCreateFeatureFlagForConf() {
         featureFlags.createFeatureFlag("test-flag-3-conf", "test-flag-3-conf", 3);
     }
     
     @Test
-    @Order(35)
+    @Order(36)
     public void testAddVariantConfigurations() {
         configuration.addConfiguration();
     }
     
     @Test
-    @Order(36)
+    @Order(37)
     public void testCreateFeatureFlagForSettings() {
         featureFlags.createFeatureFlag("test-flag-4-settings", "test-flag-4-settings", 4);
     }
     
     @Test
-    @Order(37)
+    @Order(38)
     public void testChangeFlagName() {
         settings.changeFlagName();
     }
     
     @Test
-    @Order(38)
+    @Order(39)
     public void testChangeFlagDescription() {
         settings.changeFlagDescription();
     }
     
     @Test
-    @Order(39)
+    @Order(40)
     public void testSetFlagToClientSide() {
         settings.setFlagToClientSide();
     }

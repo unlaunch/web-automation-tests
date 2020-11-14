@@ -33,7 +33,7 @@ public class Targeting {
             on.sendKeys(String.valueOf(i));
             on.sendKeys(Keys.ENTER);
         }
-        WebElement off = Browser.driver.findElement(By.cssSelector("div.__at_multiselect_ofoff div div div input"));
+        WebElement off = Browser.driver.findElement(By.cssSelector("div.__at_multiselect_off div div div input"));
 
         for (int i = 0; i < 15; i++) {
             off.sendKeys(String.valueOf(i) + "0");
