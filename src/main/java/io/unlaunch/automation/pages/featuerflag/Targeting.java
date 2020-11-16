@@ -21,7 +21,17 @@ public class Targeting {
 
     public void addWhitelist() {
 
-        Browser.sleep(2);
+        Browser.sleep(5);
+
+        WebElement flagNavLink = Browser.driver.findElement(By.linkText("Feature Flags"));
+        flagNavLink.click();
+        
+        Browser.sleep(5);
+        
+        WebElement flagLink = Browser.driver.findElement(By.linkText("test-flag"));
+        flagLink.click();
+        
+        Browser.sleep(5);
 
         WebElement targetUser = Browser.driver.findElement(By.cssSelector("button.__at_btn_add_whitelist"));
         targetUser.click();
@@ -54,7 +64,7 @@ public class Targeting {
     }
 
     public void addWhitelistToOn() {
-
+ 
         Browser.sleep(3);
 
         WebElement targetUser = Browser.driver.findElement(By.cssSelector("button.__at_btn_add_whitelist"));
@@ -123,28 +133,31 @@ public class Targeting {
     }
 
     public void setDefaultRulePercentageRollout(String val1, String val2, String val3) {
-        Browser.sleep(2);
+        Browser.sleep(3);
 
-        WebElement defaultRule = Browser.driver.findElement(By.cssSelector("div.__at_select_default_rule div div div input"));
+        WebElement defaultRule = Browser.driver.findElement(By.cssSelector("div.__at_select_default div div div input"));
         defaultRule.sendKeys("percentageRollout");
         defaultRule.sendKeys(Keys.ENTER);
-
+        
         WebElement on = Browser.driver.findElement(By.cssSelector("input.__at_perc_on"));
-        on.sendKeys(Keys.BACK_SPACE);
+        on.click();
+        on.clear();
         on.sendKeys(val1);
-
+        
         WebElement off = Browser.driver.findElement(By.cssSelector("input.__at_perc_off"));
-        off.sendKeys(Keys.BACK_SPACE);
+        off.click();
+        off.clear();
         off.sendKeys(val2);
 
         WebElement gray = Browser.driver.findElement(By.cssSelector("input.__at_perc_gray"));
-        on.sendKeys(Keys.BACK_SPACE);
+        gray.click();
+        gray.clear();    
         gray.sendKeys(val3);
 
         Browser.sleep(2);
         Browser.driver.findElement(By.cssSelector("button.__at_btn_save")).click();
 
-        Browser.sleep(2);
+        Browser.sleep(3);
         Browser.driver.findElement(By.cssSelector("button.__at_btn_ok")).click();
 
     }
@@ -153,7 +166,7 @@ public class Targeting {
 
         Browser.sleep(2);
 
-        WebElement defaultRule = Browser.driver.findElement(By.cssSelector("div.__at_select_default_rule div div div input"));
+        WebElement defaultRule = Browser.driver.findElement(By.cssSelector("div.__at_select_default div div div input"));
         defaultRule.sendKeys(var);
         defaultRule.sendKeys(Keys.ENTER);
 
