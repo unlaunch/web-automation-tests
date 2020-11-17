@@ -7,6 +7,7 @@ package io.unlaunch.automation.pages;
 
 import io.unlaunch.automation.Browser;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 /**
@@ -17,9 +18,8 @@ public class Authentication {
     
     public void login(String emailAddress, String password) {
         
-        Browser.waitForPageLoad();
-        
         WebElement emailElement = Browser.driver.findElement(By.cssSelector("input.__at_email"));
+        Browser.fluentWait((WebDriver d) -> emailElement);
         emailElement.sendKeys(emailAddress);
 
         WebElement passwordElement = Browser.driver.findElement(By.cssSelector("input.__at_password"));
@@ -31,9 +31,8 @@ public class Authentication {
     }
 
     boolean isLoggedIn() {
-        Browser.sleep(5);
-        
         WebElement sidebar = Browser.driver.findElement(By.cssSelector("div.__at_sidebar"));
+        Browser.fluentWait((WebDriver t) -> sidebar);
         return sidebar.isDisplayed();
     }
     
@@ -46,11 +45,12 @@ public class Authentication {
     }
     
     public boolean verifyLogout() {
-        Browser.waitUntilUrlLoadsOrTimeout("/login", 5);
-        
-        Browser.sleep(2);
-        
+//        Browser.waitUntilUrlLoadsOrTimeout("/login", 5);
+//        
+//        Browser.sleep(2);
+//        
         WebElement loginButton = Browser.driver.findElement(By.cssSelector("button.__at_btn_login"));
+        Browser.fluentWait((WebDriver t) -> loginButton);
         return loginButton.isDisplayed();
     }
     

@@ -18,61 +18,96 @@ import org.openqa.selenium.interactions.Actions;
 public class Variation {
 
     public void addVariation() {
-        Browser.sleep(5);
+//        Browser.sleep(5);
+        Browser.fluentWait(((t) -> {
+            return t.findElement(By.cssSelector("#nav-variation-tab > .text-normal"));
+        })).click();
+//        driver.findElement(By.cssSelector("#nav-variation-tab > .text-normal")).click();
         
-        driver.findElement(By.cssSelector("#nav-variation-tab > .text-normal")).click();
+//        Browser.sleep(5);
+        Browser.fluentWait(((t) -> {
+            return t.findElement(By.cssSelector(".btn-outline-dark"));
+        })).click();
+//        driver.
         
-        Browser.sleep(5);
+//        Browser.sleep(10);
+        Browser.fluentWait(((t) -> {
+            return t.findElement(By.cssSelector(".\\__at_btn_yes"));
+        })).click();
+//        driver.findElement(By.cssSelector(".\\__at_btn_yes")).click();
         
-        driver.findElement(By.cssSelector(".btn-outline-dark")).click();
-        
-        Browser.sleep(10);
-        
-        driver.findElement(By.cssSelector(".\\__at_btn_yes")).click();
-        
-        Browser.sleep(5);
-        
-        driver.findElement(By.name("variations[2].key")).click();
+//        Browser.sleep(5);
+        Browser.fluentWait(((t) -> {
+            return t.findElement(By.name("variations[2].key"));
+        })).click();
+
+//        driver.findElement(By.name("variations[2].key")).click();
         driver.findElement(By.name("variations[2].key")).sendKeys("red");
         driver.findElement(By.cssSelector(".btn-primary:nth-child(4)")).click();
         
-        Browser.sleep(5);
-        driver.findElement(By.cssSelector(".\\__at_btn_ok")).click();
+//        Browser.sleep(5);
+        Browser.fluentWait(((t) -> {
+            return t.findElement(By.cssSelector(".\\__at_btn_ok"));
+        })).click();
+//        driver.findElement(By.cssSelector(".\\__at_btn_ok")).click();
         
-        Browser.sleep(5);
+//        Browser.sleep(5);
+        Browser.fluentWait(((t) -> {
+            return t.findElement(By.cssSelector(".btn-outline-dark"));
+        })).click();
+//        driver.findElement(By.cssSelector(".btn-outline-dark")).click();
         
-        driver.findElement(By.cssSelector(".btn-outline-dark")).click();
+//        Browser.sleep(5);
         
-        Browser.sleep(5);
+        Browser.fluentWait(((t) -> {
+            return t.findElement(By.cssSelector(".\\__at_btn_yes"));
+        })).click();
+//        driver.findElement(By.cssSelector(".\\__at_btn_yes")).click();
+//        Browser.sleep(5);
         
-        driver.findElement(By.cssSelector(".\\__at_btn_yes")).click();
-        Browser.sleep(5);
-        
-        driver.findElement(By.name("variations[3].key")).sendKeys("gray");
+        Browser.fluentWait(((t) -> {
+            return t.findElement(By.name("variations[3].key"));
+        })).sendKeys("gray");
+//        driver.findElement(By.name("variations[3].key")).sendKeys("gray");
         driver.findElement(By.cssSelector(".btn:nth-child(4)")).click();
         
-        Browser.sleep(5);
+//        Browser.sleep(5);
         
-        driver.findElement(By.cssSelector(".\\__at_btn_ok")).click();
+        Browser.fluentWait(((t) -> {
+            return t.findElement(By.cssSelector(".\\__at_btn_ok"));
+        })).click();
 
+//        driver.findElement(By.cssSelector(".\\__at_btn_ok")).click();
+
+//        Browser.sleep(5);
+        Browser.fluentWait(((t) -> {
+            return t.findElement(By.cssSelector(".btn-outline-dark"));
+        })).click();
+//        driver.findElement(By.cssSelector(".btn-outline-dark")).click();
+        
         Browser.sleep(5);
+        Browser.fluentWait(((t) -> {
+            return t.findElement(By.cssSelector(".\\__at_btn_yes"));
+        })).click();
+//        driver.findElement(By.cssSelector(".\\__at_btn_yes")).click();
+//        Browser.sleep(5);
         
-        driver.findElement(By.cssSelector(".btn-outline-dark")).click();
-        
-        Browser.sleep(5);
-        
-        driver.findElement(By.cssSelector(".\\__at_btn_yes")).click();
-        Browser.sleep(5);
-        
-        driver.findElement(By.name("variations[4].key")).click();
+        Browser.fluentWait(((t) -> {
+            return t.findElement(By.name("variations[4].key"));
+        })).click();
+//        driver.findElement(By.name("variations[4].key")).click();
         driver.findElement(By.name("variations[4].key")).sendKeys("green");
-        Browser.sleep(5);
+//        Browser.sleep(5);
+        Browser.fluentWait(((t) -> {
+            return t.findElement(By.cssSelector(".btn:nth-child(4)"));
+        })).click();
+//        driver.findElement(By.cssSelector(".btn:nth-child(4)")).click();
         
-        driver.findElement(By.cssSelector(".btn:nth-child(4)")).click();
-        
-        Browser.sleep(5);
-        
-        driver.findElement(By.cssSelector(".\\__at_btn_ok")).click();
+//        Browser.sleep(5);
+        Browser.fluentWait(((t) -> {
+            return t.findElement(By.cssSelector(".\\__at_btn_ok"));
+        })).click();
+//        driver.findElement(By.cssSelector(".\\__at_btn_ok")).click();
 
     }
 }

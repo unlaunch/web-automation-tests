@@ -32,7 +32,7 @@ public class Configuration {
             driver.findElement(By.name("variations[0].configs[" + i + "].value")).sendKeys("123");
 
             if (i < 2) {
-                driver.findElement(By.cssSelector(".\\__at_var_add_variations\\[0s\\]")).click();
+                driver.findElement(By.cssSelector(".\\__at_var_add_variations\\[0\\]")).click();
             }
         }
 

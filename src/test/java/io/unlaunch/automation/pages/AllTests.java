@@ -12,7 +12,6 @@ import io.unlaunch.automation.pages.featuerflag.Variation;
 import io.unlaunch.automation.pages.featuerflag.Settings;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
-
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.By;
 
@@ -30,13 +29,13 @@ public class AllTests {
 
     @BeforeAll
     public static void init() {
-        Browser.driver.manage().window().maximize();
+//        Browser.driver.manage().window().maximize();
         Browser.driver.manage().deleteAllCookies();
         Browser.driver.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
         Browser.driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
     }
 
-
+    
     @Test
     @Order(1)
     public void testFillNewRegistrationForm() throws IOException{
@@ -95,7 +94,7 @@ public class AllTests {
     @Test
     @Order(10)
     public void testIsLoggedIn() {
-        authentication.isLoggedIn();
+        registration.verifySuccessfullLogin();
     }
     
     @Test

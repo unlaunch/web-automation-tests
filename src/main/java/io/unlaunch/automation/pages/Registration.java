@@ -10,9 +10,9 @@ import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.UUID;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 /**
@@ -24,7 +24,10 @@ public class Registration {
     public void register() {
         Browser.goTo(Browser.hostname);
 
-        WebElement accountElement = Browser.driver.findElement(By.linkText("Create Account"));
+        WebElement accountElement = Browser.driver.findElement(By.className("__at_link_create"));
+        Browser.fluentWait(((t) -> {
+            return accountElement;
+        }));
         accountElement.click();
 
         WebElement nameElement = Browser.driver.findElement(By.cssSelector("input[name=name]"));
@@ -45,10 +48,11 @@ public class Registration {
     }
 
     public void otp() {
-        Browser.waitUntilUrlLoadsOrTimeout("/otp", 5);
+        
+//        WebElement nameElement = Browser.driver.findElement(By.cssSelector("input[type=tel]"));
+        Browser.fluentWait((WebDriver d) -> d.findElement(By.cssSelector("input[type=tel]"))).sendKeys("455148");
 
-        WebElement nameElement = Browser.driver.findElement(By.cssSelector("input[type=tel]"));
-        nameElement.sendKeys("455148");
+//        nameElement.sendKeys("455148");
 
         WebElement button = Browser.driver.findElement(By.tagName("button"));
         button.submit();
@@ -87,9 +91,10 @@ public class Registration {
     public void verifySuccessfullLogin() {
         Browser.waitUntilUrlLoadsOrTimeout("/features", 5);
 
-        Browser.sleep(2); // Give page time to load
+//        Browser.sleep(2); // Give page time to load
 
         WebElement btn = Browser.driver.findElement(By.className("__at_btn_create"));
+        Browser.fluentWait((WebDriver t) -> btn);
         if (!btn.isDisplayed()) {
             throw new RuntimeException("cannot verify it login was successful. Create Flag Button wasn't found");
         }

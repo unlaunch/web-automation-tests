@@ -5,10 +5,18 @@
  */
 package io.unlaunch.automation;
 
+import java.util.concurrent.TimeUnit;
+import java.util.function.Function;
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 /**
@@ -23,11 +31,11 @@ public class Browser {
     }
 
     public static final String hostname = "https://app.unlaunch.io";
-//    public static final String hostname = "http://localhost:3001";
+//    public static final String hostname = "http://localhost:3000";
 
     public static final String emailAddress = "unlaunch.test@gmail.com";
 
-    public static WebDriver driver = new ChromeDriver();
+    public static WebDriver driver = new ChromeDriver(getChromeOptions());
 
     public static void goTo(String url) {
         driver.get(url);
@@ -88,4 +96,22 @@ public class Browser {
         }
     }
 
+    public static WebElement fluentWait(Function<WebDriver, WebElement> function) {
+        Wait wait = new FluentWait<>(driver)
+                .withTimeout(3, TimeUnit.MINUTES)
+                .pollingEvery(1, TimeUnit.SECONDS)
+                .ignoring(NoSuchElementException.class);
+
+        return (WebElement) wait.until(function);
+    }
+
+    private static ChromeOptions getChromeOptions() {
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--headless");
+        options.addArguments("--no-sandbox");
+        options.addArguments("--disable-dev-shm-using");
+        options.addArguments("--disable-extensions");
+        options.addArguments("--disable-gpu");
+        return options;
+    }
 }
