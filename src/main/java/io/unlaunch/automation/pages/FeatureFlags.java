@@ -60,8 +60,6 @@ public class FeatureFlags {
     }
 
     public void archiveFlag() {
-        Browser.sleep(5);
-
         WebElement settings = Browser.driver.findElement(By.id("nav-settings-tab"));
         Browser.fluentWait((WebDriver t) -> settings);
         settings.click();

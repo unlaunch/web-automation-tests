@@ -105,7 +105,7 @@ public class Browser {
 //        sleep(2);
         Wait wait = new FluentWait<>(driver)
                 .withTimeout(30, TimeUnit.SECONDS)
-                .pollingEvery(2, TimeUnit.SECONDS)
+                .pollingEvery(200, TimeUnit.MILLISECONDS)
                 .ignoring(NoSuchElementException.class);
 
         return (WebElement) wait.until(function);

@@ -8,6 +8,7 @@ package io.unlaunch.automation.pages;
 import io.unlaunch.automation.Browser;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
@@ -18,17 +19,19 @@ import org.openqa.selenium.support.ui.Select;
 public class Attributes {
 
     public void createAttribute(String name, String type) {
-        Browser.sleep(2);
-        
-        WebElement attrLink = Browser.driver.findElement(By.linkText("Attributes"));
-        attrLink.click();
 
-        Browser.sleep(3);
+        WebElement e = Browser.driver.findElement(By.className("__at_link_attributes_list"));
+        Browser.fluentWait((WebDriver t) -> e);
+        Browser.click(e);
 
-        Browser.driver.findElement(By.cssSelector("button.__at_btn_create")).click();
-        Browser.sleep(3);
+        WebElement btn = Browser.driver.findElement(By.cssSelector("button.__at_btn_create"));
+        Browser.fluentWait((WebDriver t) -> btn);
+        Browser.click(btn);
 
-        Browser.driver.findElement(By.cssSelector("input.__at_name")).sendKeys(name);
+        WebElement input = Browser.driver.findElement(By.cssSelector("input.__at_name"));
+        Browser.fluentWait((WebDriver t) -> input);
+        input.sendKeys(name);
+
         Select attrType = new Select(Browser.driver.findElement(By.cssSelector("select.__at_type")));
         attrType.selectByVisibleText(type);
 

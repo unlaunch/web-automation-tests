@@ -14,6 +14,8 @@ import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class AllTests {
@@ -213,11 +215,12 @@ public class AllTests {
     @Test
     @Order(29)
     public void testAddTargettingRuleForString() {
-        Browser.sleep(2);
-        Browser.driver.findElement(By.linkText("Feature Flags")).click();
 
-        Browser.sleep(3);
-        Browser.driver.findElement(By.linkText("test-flag")).click();
+        WebElement e = Browser.fluentWait((WebDriver d) -> d.findElement(By.className("__at_link_feature_list")));
+        Browser.click(e);
+
+       e = Browser.fluentWait((WebDriver d) -> d.findElement(By.linkText("test-flag")));
+       Browser.click(e);
 
         targeting.addTargettingRule("device","String","ABCS",1);
     }
