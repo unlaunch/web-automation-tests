@@ -1,13 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package io.unlaunch.automation;
 
+import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Function;
-import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
@@ -19,21 +14,29 @@ import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-/**
- *
- * @author ghauri
- */
 public class Browser {
 
     static {
-        System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver");
-//        System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver_macOS");
+        String os = System.getProperty("os.name");
+        Settings settings;
+        if (os.toLowerCase().startsWith("mac")) {
+            settings = new MacOsSettings();
+        } else {
+            settings = new DefaultSettings();
+        }
+
+        System.setProperty("webdriver.chrome.driver", settings.getWebDriverLocation());
+
+        hostname = settings.getHostname();
+
+        clearInputFieldKeySequence = settings.getClearInputFieldSequence();
     }
 
-    public static final String hostname = "https://app.unlaunch.io";
-//    public static final String hostname = "http://localhost:3000";
+    public static  final String hostname;
 
-    public static final String emailAddress = "unlaunch.test@gmail.com";
+    public static final String clearInputFieldKeySequence;
+
+    public static final String emailAddress = "unlaunch.test+" + UUID.randomUUID().toString() + "@gmail.com";
 
     public static WebDriver driver = new ChromeDriver(getChromeOptions());
 
@@ -63,7 +66,7 @@ public class Browser {
                 totalInMillis -= 1000;
 
                 if (totalInMillis < 0)  {
-                    throw new RuntimeException("The expected URL" + url + " was not loaded in " + timeoutInSeconds +
+                    throw new RuntimeException("The expected URL" + url + " was not loaded Settings " + timeoutInSeconds +
                             " seconds");
                 }
             }
@@ -96,10 +99,16 @@ public class Browser {
         }
     }
 
+    public static void click(WebElement webElement) {
+        JavascriptExecutor jse = (JavascriptExecutor)driver;
+        jse.executeScript("arguments[0].click()", webElement);
+    }
+
     public static WebElement fluentWait(Function<WebDriver, WebElement> function) {
+//        sleep(2);
         Wait wait = new FluentWait<>(driver)
-                .withTimeout(3, TimeUnit.MINUTES)
-                .pollingEvery(1, TimeUnit.SECONDS)
+                .withTimeout(30, TimeUnit.SECONDS)
+                .pollingEvery(2, TimeUnit.SECONDS)
                 .ignoring(NoSuchElementException.class);
 
         return (WebElement) wait.until(function);
@@ -107,11 +116,11 @@ public class Browser {
 
     private static ChromeOptions getChromeOptions() {
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("--headless");
-        options.addArguments("--no-sandbox");
-        options.addArguments("--disable-dev-shm-using");
-        options.addArguments("--disable-extensions");
-        options.addArguments("--disable-gpu");
+//        options.addArguments("--headless");
+//        options.addArguments("--no-sandbox");
+//        options.addArguments("--disable-dev-shm-using");
+//        options.addArguments("--disable-extensions");
+//        options.addArguments("--disable-gpu");
         return options;
     }
 }

@@ -1,7 +1,7 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
+ * To change this license header, choose License Headers Settings Project Properties.
  * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * and open the template Settings the editor.
  */
 package io.unlaunch.automation.pages;
 
@@ -37,18 +37,18 @@ public class Authentication {
     }
     
     public void logout() {
-        WebElement userEmail = Browser.driver.findElement(By.id("bd-versions"));
-        userEmail.click();
-        
+        WebElement userEmail = Browser.driver.findElement(By.xpath("//*[@id=\"bd-versions\"]/span[2]"));
+        Browser.fluentWait((WebDriver t) -> userEmail);
+        Browser.click(userEmail);
+
+        Browser.sleep(1);
+
         WebElement logoutItem = Browser.driver.findElement(By.linkText("Logout"));
-        logoutItem.click();
+        Browser.fluentWait((WebDriver t) -> logoutItem);
+        Browser.click(logoutItem);
     }
     
     public boolean verifyLogout() {
-//        Browser.waitUntilUrlLoadsOrTimeout("/login", 5);
-//        
-//        Browser.sleep(2);
-//        
         WebElement loginButton = Browser.driver.findElement(By.cssSelector("button.__at_btn_login"));
         Browser.fluentWait((WebDriver t) -> loginButton);
         return loginButton.isDisplayed();

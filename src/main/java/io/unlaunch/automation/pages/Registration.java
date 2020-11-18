@@ -1,7 +1,7 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
+ * To change this license header, choose License Headers Settings Project Properties.
  * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * and open the template Settings the editor.
  */
 package io.unlaunch.automation.pages;
 
@@ -61,7 +61,7 @@ public class Registration {
     public void company() {
         Browser.waitUntilUrlLoadsOrTimeout("/company", 5);
         WebElement button = Browser.driver.findElement(By.tagName("button"));
-        button.click();
+        Browser.click(button);
 
     }
 

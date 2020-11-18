@@ -1,13 +1,16 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
+ * To change this license header, choose License Headers Settings Project Properties.
  * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * and open the template Settings the editor.
  */
 package io.unlaunch.automation.pages.featuerflag;
 
 import io.unlaunch.automation.Browser;
 import static io.unlaunch.automation.Browser.driver;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 
 /**
  *
@@ -87,7 +90,11 @@ public class Configuration {
         Browser.sleep(5);
         driver.findElement(By.cssSelector(".card:nth-child(1) > .card-body:nth-child(2) div:nth-child(2) span:nth-child(1)")).click();
         Browser.sleep(5);
-        driver.findElement(By.cssSelector(".\\__at_variations\\[0\\]\\.configs\\[1\\]\\.key_del")).click();
+
+        Actions act =  new Actions(driver);
+        WebElement e = Browser.fluentWait((WebDriver t) -> t.findElement(By.cssSelector(".\\__at_variations\\[0\\]\\.configs\\[1\\]\\.key_del")));
+        act.moveToElement(e).click().perform();
+
         Browser.sleep(5);
         driver.findElement(By.cssSelector(".\\__at_btn_save")).click();
         Browser.sleep(5);

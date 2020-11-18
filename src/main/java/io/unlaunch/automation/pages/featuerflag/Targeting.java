@@ -1,7 +1,7 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
+ * To change this license header, choose License Headers Settings Project Properties.
  * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * and open the template Settings the editor.
  */
 package io.unlaunch.automation.pages.featuerflag;
 
@@ -19,21 +19,31 @@ public class Targeting {
 
     public void addWhitelist() {
 
-//        Browser.sleep(5);
-        WebElement flagNavLink = Browser.driver.findElement(By.linkText("Feature Flags"));
-        Browser.fluentWait((WebDriver t) -> flagNavLink);
-        flagNavLink.click();
+        Browser.sleep(2);
 
-//        Browser.sleep(5);
+
+        try {
+            WebElement flagNavLink = Browser.driver.findElement(By.linkText("Feature Flags"));
+            Browser.fluentWait((WebDriver t) -> flagNavLink);
+            flagNavLink.click();
+
+        } catch (org.openqa.selenium.StaleElementReferenceException ex) {
+            WebElement flagNavLink = Browser.driver.findElement(By.linkText("Feature Flags"));
+            Browser.fluentWait((WebDriver t) -> flagNavLink);
+            flagNavLink.click();
+        }
+
+
+
         WebElement flagLink = Browser.driver.findElement(By.linkText("test-flag"));
+        Browser.fluentWait((WebDriver t) -> flagLink);
         flagLink.click();
 
-//        Browser.sleep(5);
+
         WebElement targetUser = Browser.driver.findElement(By.cssSelector("button.__at_btn_add_whitelist"));
         Browser.fluentWait((WebDriver t) -> targetUser);
         targetUser.click();
 
-//        Browser.sleep(1);
         WebElement on = Browser.driver.findElement(By.cssSelector("div.__at_multiselect_on div div div input"));
         Browser.fluentWait((WebDriver t) -> on);
         for (int i = 0; i < 15; i++) {
@@ -42,11 +52,13 @@ public class Targeting {
         }
 
         WebElement off = Browser.driver.findElement(By.cssSelector("div.__at_multiselect_off div div div input"));
+        Browser.fluentWait((WebDriver t) -> off);
         for (int i = 0; i < 15; i++) {
             off.sendKeys(String.valueOf(i) + "0");
             off.sendKeys(Keys.ENTER);
         }
         WebElement gray = Browser.driver.findElement(By.cssSelector("div.__at_multiselect_gray div div div input"));
+        Browser.fluentWait((WebDriver t) -> gray);
         for (int i = 0; i < 15; i++) {
             gray.sendKeys(String.valueOf(i) + "00");
             gray.sendKeys(Keys.ENTER);
@@ -55,7 +67,6 @@ public class Targeting {
         Browser.driver.findElement(By.cssSelector("button.__at_btn_save")).click();
 
         Browser.fluentWait((WebDriver t) -> t.findElement(By.cssSelector("button.__at_btn_ok"))).click();
-//        Browser.driver.findElement(By.cssSelector("button.__at_btn_ok")).click();
 
     }
 
@@ -144,19 +155,19 @@ public class Targeting {
         defaultRule.sendKeys(Keys.ENTER);
 
         WebElement on = Browser.driver.findElement(By.cssSelector("input.__at_perc_on"));
-        on.sendKeys(Keys.chord(Keys.CONTROL + "a" + Keys.DELETE));
+        on.sendKeys(Browser.clearInputFieldKeySequence);
         on.sendKeys(val1);
 
         WebElement off = Browser.driver.findElement(By.cssSelector("input.__at_perc_off"));
 //        off.click();
 //        off.clear();
-        off.sendKeys(Keys.chord(Keys.CONTROL + "a" + Keys.DELETE));
+        off.sendKeys(Browser.clearInputFieldKeySequence);
         off.sendKeys(val2);
 
         WebElement gray = Browser.driver.findElement(By.cssSelector("input.__at_perc_gray"));
 //        gray.click();
 //        gray.clear();
-        gray.sendKeys(Keys.chord(Keys.CONTROL + "a" + Keys.DELETE));
+        gray.sendKeys(Browser.clearInputFieldKeySequence);
         gray.sendKeys(val3);
 
 //        Browser.sleep(2);
@@ -250,20 +261,19 @@ public class Targeting {
     }
 
     public void delTargettingRule(Integer i) {
-//        Browser.sleep(2);
-//        Browser.driver.findElement(By.linkText("test-flag")).click();
-        Browser.fluentWait((WebDriver t) -> t.findElement(By.linkText("test-flag"))).click();
 
-//        Browser.sleep(3);
-//        Browser.driver.findElement(By.cssSelector("button.__at_btn_rule_del_" + i)).click();
-        Browser.fluentWait((WebDriver t) -> t.findElement(By.cssSelector("button.__at_btn_rule_del_" + i))).click();
+//        WebElement e = Browser.fluentWait((WebDriver t) -> t.findElement(By.linkText("test-flag")));
+//        Browser.click(e);
+        WebElement e;
+        e = Browser.fluentWait((WebDriver t) -> t.findElement(By.cssSelector("button.__at_btn_rule_del_" + i)));
+        Browser.click(e);
 
-        Browser.fluentWait((WebDriver t) -> t.findElement(By.cssSelector("button.__at_btn_save"))).click();
-//Browser.driver.findElement(By.cssSelector("button.__at_btn_save")).click();
+        e = Browser.fluentWait((WebDriver t) -> t.findElement(By.cssSelector("button.__at_btn_save")));
+        Browser.click(e);
 
-//        Browser.sleep(2);
-        Browser.fluentWait((WebDriver t) -> t.findElement(By.cssSelector("button.__at_btn_ok"))).click();
-//        Browser.driver.findElement(By.cssSelector("button.__at_btn_ok")).click();
+        Browser.fluentWait((WebDriver t) -> t.findElement(By.cssSelector("button.__at_btn_ok")));
+        Browser.click(e);
+
 
     }
 }

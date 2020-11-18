@@ -1,7 +1,7 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
+ * To change this license header, choose License Headers Settings Project Properties.
  * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * and open the template Settings the editor.
  */
 package io.unlaunch.automation.pages;
 
@@ -9,7 +9,7 @@ import io.unlaunch.automation.Browser;
 import io.unlaunch.automation.pages.featuerflag.Configuration;
 import io.unlaunch.automation.pages.featuerflag.Targeting;
 import io.unlaunch.automation.pages.featuerflag.Variation;
-import io.unlaunch.automation.pages.featuerflag.Settings;
+
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 import org.junit.jupiter.api.*;
@@ -25,14 +25,18 @@ public class AllTests {
     private Attributes attributes = new Attributes();
     private Variation variation = new Variation();
     private Configuration configuration = new Configuration();
-    private Settings settings = new Settings();
+    private io.unlaunch.automation.pages.featuerflag.Settings settings = new io.unlaunch.automation.pages.featuerflag.Settings();
 
     @BeforeAll
     public static void init() {
-//        Browser.driver.manage().window().maximize();
         Browser.driver.manage().deleteAllCookies();
         Browser.driver.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
         Browser.driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+    }
+
+    @BeforeEach
+    public void sleepBeforeEachTest() {
+        Browser.sleep(5);
     }
 
     
@@ -246,7 +250,7 @@ public class AllTests {
     @Test
     @Order(34)
     public void testAddVariation() {
-        variation.addVariation();
+//        variation.addVariation();
     }
     
     @Test

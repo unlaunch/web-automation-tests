@@ -1,7 +1,7 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
+ * To change this license header, choose License Headers Settings Project Properties.
  * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * and open the template Settings the editor.
  */
 package io.unlaunch.automation.pages;
 
@@ -10,6 +10,7 @@ import static io.unlaunch.automation.Browser.driver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 /**
  *
@@ -18,20 +19,14 @@ import org.openqa.selenium.WebElement;
 public class FeatureFlags {
 
     public void createFeatureFlag(String name, String key, int numberOfVariations) {
-//        Browser.sleep(10);
+        WebElement e = Browser.fluentWait((WebDriver d) -> d.findElement(By.className("__at_link_feature_list")));
+        Browser.click(e);
+        e = Browser.fluentWait((WebDriver d) -> d.findElement(By.className("__at_btn_create")));
+        Browser.click(e);
 
-//        WebElement flagLink = Browser.driver.findElement(By.linkText("Feature Flags"));
-        Browser.fluentWait((WebDriver d) -> d.findElement(By.linkText("Feature Flags"))).click();
-//        flagLink.click();
+        Browser.sleep(2); // TODO fix. Waits for modal to load
 
-//        Browser.sleep(10);
-        Browser.fluentWait((WebDriver d) -> d.findElement(By.className("__at_btn_create"))).click();
-//        WebElement btnCreateFlag = Browser.driver.findElement(By.className("__at_btn_create"));
-//        btnCreateFlag.click();
-
-        Browser.sleep(5);
         WebElement modal = Browser.driver.switchTo().activeElement();
-//        System.out.println("tag name " + modal.getTagName());
 
         WebElement nameFlag = modal.findElement(By.name("name"));
         Browser.fluentWait(((t) -> {
@@ -39,8 +34,6 @@ public class FeatureFlags {
         }));
         nameFlag.sendKeys(name);
 
-//        WebElement flahKey = modal.findElement(By.name("key"));
-//        flahKey.sendKeys(key);
         WebElement description = modal.findElement(By.name("description"));
         description.sendKeys("Test feature flag");
 
@@ -52,8 +45,6 @@ public class FeatureFlags {
             if (i > 2) {
                 WebElement btnAddVariation = modal.findElement(By.className("__at_btn_var_add"));
                 btnAddVariation.click();
-
-//                Browser.sleep(5);
                 int varIndex = i - 1;
                 int sId = numberOfVariations - i;
 
@@ -75,18 +66,13 @@ public class FeatureFlags {
         Browser.fluentWait((WebDriver t) -> settings);
         settings.click();
 
-//        Browser.sleep(10);
         WebElement btnArchive = Browser.driver.findElement(By.className("__at_btn_archive"));
-//        Browser.sleep(2);
+
         Browser.fluentWait((WebDriver t) -> btnArchive);
         btnArchive.click();
-
-//        Browser.sleep(5);
         driver.findElement(By.cssSelector(".react-confirm-alert-button-group > button:nth-child(1)")).click();
-
-//        Browser.sleep(5);
         Browser.fluentWait((WebDriver t) -> t.findElement(By.cssSelector(".\\__at_btn_ok"))).click();
-//        driver.findElement(By.cssSelector(".\\__at_btn_ok")).click();
+
 
     }
 
