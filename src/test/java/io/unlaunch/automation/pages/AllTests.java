@@ -39,7 +39,6 @@ public class AllTests {
         Browser.sleep(5);
     }
 
-    
     @Test
     @Order(1)
     public void testFillNewRegistrationForm() throws IOException{

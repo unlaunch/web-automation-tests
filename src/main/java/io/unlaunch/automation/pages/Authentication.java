@@ -37,15 +37,18 @@ public class Authentication {
     }
     
     public void logout() {
-        WebElement userEmail = Browser.driver.findElement(By.xpath("//*[@id=\"bd-versions\"]/span[2]"));
-        Browser.fluentWait((WebDriver t) -> userEmail);
-        Browser.click(userEmail);
+        Browser.goTo(Browser.logoutUrl);
 
-        Browser.sleep(1);
-
-        WebElement logoutItem = Browser.driver.findElement(By.linkText("Logout"));
-        Browser.fluentWait((WebDriver t) -> logoutItem);
-        Browser.click(logoutItem);
+        // TODO this code is intermittently breaking
+//        WebElement userEmail = Browser.driver.findElement(By.xpath("//*[@id=\"bd-versions\"]/span[2]"));
+//        Browser.fluentWait((WebDriver t) -> userEmail);
+//        Browser.click(userEmail);
+//
+//        Browser.sleep(1);
+//
+//        WebElement logoutItem = Browser.driver.findElement(By.linkText("Logout"));
+//        Browser.fluentWait((WebDriver t) -> logoutItem);
+//        Browser.click(logoutItem);
     }
     
     public boolean verifyLogout() {

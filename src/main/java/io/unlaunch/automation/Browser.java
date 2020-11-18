@@ -26,19 +26,16 @@ public class Browser {
         }
 
         System.setProperty("webdriver.chrome.driver", settings.getWebDriverLocation());
-
         hostname = settings.getHostname();
-
+        logoutUrl = settings.getHostname() + "/logout";
         clearInputFieldKeySequence = settings.getClearInputFieldSequence();
     }
 
     public static  final String hostname;
-
     public static final String clearInputFieldKeySequence;
-
     public static final String emailAddress = "unlaunch.test+" + UUID.randomUUID().toString() + "@gmail.com";
-
     public static WebDriver driver = new ChromeDriver(getChromeOptions());
+    public static final String logoutUrl;
 
     public static void goTo(String url) {
         driver.get(url);
@@ -116,11 +113,11 @@ public class Browser {
 
     private static ChromeOptions getChromeOptions() {
         ChromeOptions options = new ChromeOptions();
-//        options.addArguments("--headless");
-//        options.addArguments("--no-sandbox");
-//        options.addArguments("--disable-dev-shm-using");
-//        options.addArguments("--disable-extensions");
-//        options.addArguments("--disable-gpu");
+        options.addArguments("--headless");
+        options.addArguments("--no-sandbox");
+        options.addArguments("--disable-dev-shm-using");
+        options.addArguments("--disable-extensions");
+        options.addArguments("--disable-gpu");
         return options;
     }
 }
