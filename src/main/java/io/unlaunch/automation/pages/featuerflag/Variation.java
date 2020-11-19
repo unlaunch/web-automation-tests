@@ -8,6 +8,8 @@ package io.unlaunch.automation.pages.featuerflag;
 import io.unlaunch.automation.Browser;
 import static io.unlaunch.automation.Browser.driver;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 /**
  *
@@ -17,41 +19,51 @@ public class Variation {
 
     public void addVariation() {
 
-        // TODO fix sleep
-        Browser.sleep(5);
-        driver.findElement(By.cssSelector("#nav-variation-tab > .text-normal")).click();
+        Browser.fluentWait((WebDriver t) -> t.findElement(By.className("__at_link_variations"))).click();
 
-        Browser.sleep(5);
-        driver.findElement(By.cssSelector(".\\__at_selection")).click();
-        Browser.sleep(5);
-        driver.findElement(By.cssSelector(".\\__at_btn_yes")).click();
-        Browser.sleep(5);
-        driver.findElement(By.className("__at_variations[2].key_key")).sendKeys("red");
-        driver.findElement(By.cssSelector(".\\__at_btn_save")).click();
-        Browser.sleep(5);
-        driver.findElement(By.cssSelector(".\\__at_btn_ok")).click();
+        Browser.sleep(1);
 
-        Browser.sleep(5);
-        driver.findElement(By.cssSelector(".\\__at_selection")).click();
-        Browser.sleep(5);
-        driver.findElement(By.cssSelector(".\\__at_btn_yes")).click();
-        Browser.sleep(5);
-        driver.findElement(By.className("__at_variations[3].key_key")).sendKeys("gray");
-        driver.findElement(By.cssSelector(".\\__at_btn_save")).click();
-        Browser.sleep(5);
-        driver.findElement(By.cssSelector(".\\__at_btn_ok")).click();
+        Browser.fluentWait((WebDriver t) -> t.findElement(By.className("__at_btn_var_add"))).click();
 
-        Browser.sleep(5);
-        driver.findElement(By.cssSelector(".\\__at_selection")).click();
-        Browser.sleep(5);
-        driver.findElement(By.cssSelector(".\\__at_btn_yes")).click();
-        Browser.sleep(5);
-        driver.findElement(By.className("__at_variations[4].key_key")).click();
-        driver.findElement(By.className("__at_variations[4].key_key")).sendKeys("green");
-        Browser.sleep(5);
-        driver.findElement(By.cssSelector(".\\__at_btn_save")).click();
-        Browser.sleep(5);
-        driver.findElement(By.cssSelector(".\\__at_btn_ok")).click();
+        Browser.sleep(1);
+
+        Browser.fluentWait((WebDriver t) -> t.findElement(By.className("__at_btn_yes"))).click();
+
+        Browser.sleep(1);
+        Browser.fluentWait((WebDriver t) -> t.findElement(By.className("__at_variations[2].key_key"))).sendKeys("red");
+        Browser.fluentWait((WebDriver t) -> t.findElement(By.className("__at_btn_save"))).click();
+
+        Browser.sleep(1);
+        Browser.fluentWait((WebDriver t) -> t.findElement(By.className("__at_btn_ok"))).click();
+
+        Browser.sleep(1);
+        Browser.fluentWait((WebDriver t) -> t.findElement(By.className("__at_btn_var_add"))).click();
+
+        Browser.sleep(1);
+        Browser.fluentWait((WebDriver t) -> t.findElement(By.className("__at_btn_yes"))).click();
+
+        Browser.sleep(1);
+
+        Browser.fluentWait((WebDriver t) -> t.findElement(By.className("__at_variations[3].key_key"))).sendKeys("gray");
+        Browser.fluentWait((WebDriver t) -> t.findElement(By.className("__at_btn_save"))).click();
+
+        Browser.sleep(1);
+        Browser.fluentWait((WebDriver t) -> t.findElement(By.className("__at_btn_ok"))).click();
+
+        Browser.sleep(1);
+        Browser.fluentWait((WebDriver t) -> t.findElement(By.className("__at_btn_var_add"))).click();
+
+        Browser.sleep(1);
+        Browser.fluentWait((WebDriver t) -> t.findElement(By.className("__at_btn_yes"))).click();
+
+        Browser.sleep(1);
+        Browser.fluentWait((WebDriver t) -> t.findElement(By.className("__at_variations[4].key_key"))).click();
+        Browser.fluentWait((WebDriver t) -> t.findElement(By.className("__at_variations[4].key_key"))).sendKeys("green");
+
+        Browser.sleep(1);
+        Browser.fluentWait((WebDriver t) -> t.findElement(By.className("__at_btn_save"))).click();
+        Browser.sleep(1);
+        Browser.fluentWait((WebDriver t) -> t.findElement(By.className("__at_btn_ok"))).click();
 
     }
 }

@@ -39,12 +39,12 @@ public class Settings {
 
         WebElement flagDesc = driver.findElement(By.className("__at_desc"));
         Browser.fluentWait((WebDriver t) -> flagDesc);
-        flagDesc.sendKeys(Keys.chord(Keys.CONTROL + "a" + Keys.DELETE));
+        flagDesc.sendKeys(Browser.clearInputFieldKeySequence);
         flagDesc.sendKeys("flag description changed");
 
         driver.findElement(By.className("__at_btn_save")).click();
         
-        Browser.fluentWait((WebDriver t) -> t.findElement(By.cssSelector(".\\__at_btn_ok"))).click();
+        Browser.fluentWait((WebDriver t) -> t.findElement(By.className("__at_btn_ok"))).click();
     }
 
     public void setFlagToClientSide() {
@@ -54,7 +54,7 @@ public class Settings {
 
         driver.findElement(By.className("__at_btn_save")).click();
         
-        Browser.fluentWait((WebDriver t) -> t.findElement(By.cssSelector(".\\__at_btn_ok"))).click();
+        Browser.fluentWait((WebDriver t) -> t.findElement(By.className("__at_btn_ok"))).click();
 
     }
 }

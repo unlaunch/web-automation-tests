@@ -252,7 +252,7 @@ public class AllTests {
     @Test
     @Order(34)
     public void testAddVariation() {
-//        variation.addVariation();
+        variation.addVariation();
     }
     
     @Test
