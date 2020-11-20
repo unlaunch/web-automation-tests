@@ -14,12 +14,15 @@ import java.net.URL;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 /**
  *
  * @author ghauri
  */
 public class Registration {
+    private final WebDriverWait webDriverWait = new WebDriverWait(Browser.driver, 5);
 
     public void register() {
         Browser.goTo(Browser.hostname);
@@ -48,25 +51,19 @@ public class Registration {
     }
 
     public void otp() {
-        
-//        WebElement nameElement = Browser.driver.findElement(By.cssSelector("input[type=tel]"));
         Browser.fluentWait((WebDriver d) -> d.findElement(By.cssSelector("input[type=tel]"))).sendKeys("455148");
-
-//        nameElement.sendKeys("455148");
-
         WebElement button = Browser.driver.findElement(By.tagName("button"));
         button.submit();
     }
 
     public void company() {
-        Browser.waitUntilUrlLoadsOrTimeout("/company", 5);
+        webDriverWait.until(ExpectedConditions.urlContains("/company"));
         WebElement button = Browser.driver.findElement(By.tagName("button"));
         Browser.click(button);
-
     }
 
     public void createFirstProject() {
-        Browser.waitUntilUrlLoadsOrTimeout("/project", 5);
+        webDriverWait.until(ExpectedConditions.urlContains("/project"));
 
         WebElement nameElement = Browser.driver.findElement(By.cssSelector("input[name=name]"));
         nameElement.sendKeys("Unlaunch automated test");
@@ -82,16 +79,13 @@ public class Registration {
     }
 
     public void skipMembers() {
-        Browser.waitUntilUrlLoadsOrTimeout("/add/members", 5);
-
+        webDriverWait.until(ExpectedConditions.urlContains("/add/members"));
         WebElement btn = Browser.driver.findElement(By.className("__at_btn_skip"));
         btn.click();
     }
 
     public void verifySuccessfullLogin() {
-        Browser.waitUntilUrlLoadsOrTimeout("/features", 5);
-
-//        Browser.sleep(2); // Give page time to load
+        webDriverWait.until(ExpectedConditions.urlContains("/features"));
 
         WebElement btn = Browser.driver.findElement(By.className("__at_btn_create"));
         Browser.fluentWait((WebDriver t) -> btn);

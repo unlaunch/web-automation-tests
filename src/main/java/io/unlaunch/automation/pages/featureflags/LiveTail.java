@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template Settings the editor.
  */
-package io.unlaunch.automation.pages.featuerflag;
+package io.unlaunch.automation.pages.featureflags;
 
 /**
  *
  * @author ghauri
  */
-public abstract class FeatureFlag {
+public class LiveTail {
     
 }

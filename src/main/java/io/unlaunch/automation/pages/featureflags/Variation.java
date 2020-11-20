@@ -3,13 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package io.unlaunch.automation.pages.featuerflag;
+package io.unlaunch.automation.pages.featureflags;
 
 import io.unlaunch.automation.Browser;
-import static io.unlaunch.automation.Browser.driver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 
 /**
  *

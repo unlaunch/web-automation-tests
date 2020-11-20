@@ -6,9 +6,9 @@
 package io.unlaunch.automation.pages;
 
 import io.unlaunch.automation.Browser;
-import io.unlaunch.automation.pages.featuerflag.Configuration;
-import io.unlaunch.automation.pages.featuerflag.Targeting;
-import io.unlaunch.automation.pages.featuerflag.Variation;
+import io.unlaunch.automation.pages.featureflags.Configuration;
+import io.unlaunch.automation.pages.featureflags.Targeting;
+import io.unlaunch.automation.pages.featureflags.Variation;
 
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
@@ -27,7 +27,7 @@ public class AllTests {
     private Attributes attributes = new Attributes();
     private Variation variation = new Variation();
     private Configuration configuration = new Configuration();
-    private io.unlaunch.automation.pages.featuerflag.Settings settings = new io.unlaunch.automation.pages.featuerflag.Settings();
+    private io.unlaunch.automation.pages.featureflags.Settings settings = new io.unlaunch.automation.pages.featureflags.Settings();
 
     @BeforeAll
     public static void init() {
@@ -294,7 +294,7 @@ public class AllTests {
     @AfterAll
     public static void finish() {
         // Comment this if you want to leave the browser open
-        Browser.quit();
+        Browser.driver.quit();
     }
 
 }

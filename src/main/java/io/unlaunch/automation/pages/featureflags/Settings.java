@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template Settings the editor.
  */
-package io.unlaunch.automation.pages.featuerflag;
+package io.unlaunch.automation.pages.featureflags;
 
 import io.unlaunch.automation.Browser;
 import static io.unlaunch.automation.Browser.driver;
