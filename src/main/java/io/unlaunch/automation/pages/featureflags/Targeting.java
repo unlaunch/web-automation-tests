@@ -59,6 +59,7 @@ public class Targeting {
         }
 
         Browser.driver.findElement(By.cssSelector("button.__at_btn_save")).click();
+        Browser.sleep(1);
 
         Browser.fluentWait((WebDriver t) -> t.findElement(By.cssSelector("button.__at_btn_ok"))).click();
 
@@ -79,6 +80,7 @@ public class Targeting {
         }
 
         Browser.driver.findElement(By.cssSelector("button.__at_btn_save")).click();
+        Browser.sleep(1);
 
         Browser.fluentWait((WebDriver t) -> t.findElement(By.cssSelector("button.__at_btn_ok"))).click();
 
@@ -93,6 +95,7 @@ public class Targeting {
         }
 
         Browser.driver.findElement(By.cssSelector("button.__at_btn_save")).click();
+        Browser.sleep(1);
 
         Browser.fluentWait((WebDriver t) -> t.findElement(By.cssSelector("button.__at_btn_ok"))).click();
 
@@ -117,13 +120,10 @@ public class Targeting {
             gray.sendKeys(Keys.BACK_SPACE);
         }
 
-
         Browser.driver.findElement(By.cssSelector("button.__at_btn_save")).click();
+        Browser.sleep(1);
 
-//        Browser.sleep(2);
         Browser.fluentWait((WebDriver t) -> t.findElement(By.cssSelector("button.__at_btn_ok"))).click();
-//        Browser.driver.findElement(By.cssSelector("button.__at_btn_ok")).click();
-
     }
 
     public void setDefaultRulePercentageRollout(String val1, String val2, String val3) {
@@ -141,61 +141,42 @@ public class Targeting {
         on.sendKeys(val1);
 
         WebElement off = Browser.driver.findElement(By.cssSelector("input.__at_perc_off"));
-//        off.click();
-//        off.clear();
+
         off.sendKeys(Browser.clearInputFieldKeySequence);
         off.sendKeys(val2);
 
         WebElement gray = Browser.driver.findElement(By.cssSelector("input.__at_perc_gray"));
-//        gray.click();
-//        gray.clear();
+
         gray.sendKeys(Browser.clearInputFieldKeySequence);
         gray.sendKeys(val3);
 
-//        Browser.sleep(2);
         Browser.fluentWait((WebDriver t) -> t.findElement(By.cssSelector("button.__at_btn_save"))).click();
-//        Browser.driver.findElement(By.cssSelector("button.__at_btn_save")).click();
 
-//        Browser.sleep(3);
         Browser.fluentWait((WebDriver t) -> t.findElement(By.cssSelector("button.__at_btn_ok"))).click();
-//        Browser.driver.findElement(By.cssSelector("button.__at_btn_ok")).click();
 
     }
 
     public void setDefaultRule(String var) {
-
-//        Browser.sleep(2);
         WebElement defaultRule = Browser.driver.findElement(By.cssSelector("div.__at_select_default div div div input"));
         Browser.fluentWait((WebDriver t) -> defaultRule);
         defaultRule.sendKeys(var);
         defaultRule.sendKeys(Keys.ENTER);
 
-//        Browser.sleep(2);
         Browser.fluentWait((WebDriver t) -> t.findElement(By.cssSelector("button.__at_btn_save"))).click();
-//Browser.driver.findElement(By.cssSelector("button.__at_btn_save")).click();
-
-//        Browser.sleep(2);
+        Browser.sleep(1);
         Browser.fluentWait((WebDriver t) -> t.findElement(By.cssSelector("button.__at_btn_ok"))).click();
-//        Browser.driver.findElement(By.cssSelector("button.__at_btn_ok")).click();
 
     }
 
     public void setDefaultVariation(String var) {
-
-//        Browser.sleep(2);
         WebElement defaultRule = Browser.driver.findElement(By.cssSelector("div.__at_select_offvariation div div div input"));
         Browser.fluentWait((WebDriver t) -> defaultRule);
         defaultRule.sendKeys(var);
         defaultRule.sendKeys(Keys.ENTER);
 
-//        Browser.sleep(2);
         Browser.fluentWait((WebDriver t) -> t.findElement(By.cssSelector("button.__at_btn_save"))).click();
         Browser.fluentWait((WebDriver t) -> t.findElement(By.cssSelector("button.__at_btn_ok"))).click();
 
-//Browser.driver.findElement(By.cssSelector("button.__at_btn_save")).click();
-//
-//        Browser.sleep(2);
-//        Browser.driver.findElement(By.cssSelector("button.__at_btn_ok")).click();
     }
 
     public void addTargettingRule(String attr, String type, String value, Integer index) {

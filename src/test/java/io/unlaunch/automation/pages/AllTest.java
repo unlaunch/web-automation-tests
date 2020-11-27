@@ -18,7 +18,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-public class AllTests {
+public class AllTest {
 
     private Registration registration = new Registration();
     private Authentication authentication = new Authentication();

@@ -41,6 +41,7 @@ public class Browser {
 
 
     public static void sleep(int seconds) {
+        seconds = seconds +5;
         try {
             Thread.sleep(seconds * 1000);
         } catch (InterruptedException ie) {
