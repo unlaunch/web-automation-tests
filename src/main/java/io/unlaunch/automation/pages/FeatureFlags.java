@@ -73,5 +73,29 @@ public class FeatureFlags {
 
 
     }
+    
+    public void deleteFlag() {
+        WebElement e = Browser.fluentWait((WebDriver d) -> d.findElement(By.className("__at_link_feature_list")));
+        Browser.click(e);
+        
+        Browser.sleep(5);
+        WebElement linkArchive = Browser.driver.findElement(By.className("__at_link_archive"));
+        Browser.fluentWait((WebDriver t) -> linkArchive);
+        linkArchive.click();
 
+        Browser.sleep(5);
+        WebElement btnDelete = Browser.driver.findElement(By.className("__at_btn_delete"));
+        Browser.fluentWait((WebDriver t) -> btnDelete);
+        btnDelete.click();
+        
+        Browser.sleep(5);
+        WebElement textDelete = Browser.driver.findElement(By.className("__at_flag_name"));
+        Browser.fluentWait((WebDriver t) -> textDelete);
+        textDelete.sendKeys("test-archive-flag");
+        
+        WebElement deleteModalBtn = Browser.driver.findElement(By.className("__at_delete"));
+        Browser.fluentWait((WebDriver t) -> deleteModalBtn);
+        deleteModalBtn.click();
+
+    }
 }
