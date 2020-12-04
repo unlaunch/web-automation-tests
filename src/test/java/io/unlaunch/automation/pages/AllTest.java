@@ -10,6 +10,7 @@ import io.unlaunch.automation.pages.featureflags.Configuration;
 import io.unlaunch.automation.pages.featureflags.Targeting;
 import io.unlaunch.automation.pages.featureflags.Variation;
 import io.unlaunch.automation.pages.settings.Members;
+import io.unlaunch.automation.pages.settings.Projects;
 
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
@@ -30,6 +31,8 @@ public class AllTest {
     private Configuration configuration = new Configuration();
     private io.unlaunch.automation.pages.featureflags.Settings settings = new io.unlaunch.automation.pages.featureflags.Settings();
     private Members users = new Members();
+    private Sidebar sidebar = new Sidebar();
+    private Projects projects = new Projects();
 
     @BeforeAll
     public static void init() {
@@ -303,6 +306,24 @@ public class AllTest {
     @Order(42)
     public void testAddMember() {
         users.addMember();
+    }
+    
+    @Test
+    @Order(43)
+    public void testChangeEnv() {
+        sidebar.changeEnviroment();
+    }
+    
+    @Test
+    @Order(44)
+    public void testCreateProject() {
+        projects.createProject();
+    }
+    
+    @Test
+    @Order(45)
+    public void testDeleteProject() {
+        projects.deleteProject();
     }
     
     @AfterAll
