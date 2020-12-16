@@ -17,7 +17,7 @@ import org.openqa.selenium.WebElement;
  */
 public class Projects {
 
-    public void createProject() {
+    public void createProject(String projectName) {
 
         WebElement settings = driver.findElement(By.className("__at_nav_settings"));
         Browser.fluentWait((WebDriver t) -> settings);
@@ -36,7 +36,7 @@ public class Projects {
         WebElement name = driver.findElement(By.className("__at_name"));
         Browser.fluentWait((WebDriver t) -> name);
         name.click();
-        name.sendKeys("Selenium Automation Testing");
+        name.sendKeys(projectName);
 
         WebElement desc = driver.findElement(By.className("__at_description"));
         Browser.fluentWait((WebDriver t) -> desc);
@@ -72,6 +72,6 @@ public class Projects {
         driver.findElement(By.className("__at_delete")).click();
         
         Browser.sleep(10);
-        driver.findElement(By.className("__at_delete_confirm")).click();
+        driver.findElement(By.className("__at_confirm_delete")).click();
     }
 }

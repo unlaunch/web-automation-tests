@@ -68,7 +68,16 @@ public class FeatureFlags {
 
         Browser.fluentWait((WebDriver t) -> btnArchive);
         btnArchive.click();
-        driver.findElement(By.cssSelector(".react-confirm-alert-button-group > button:nth-child(1)")).click();
+        
+        Browser.sleep(5);
+        WebElement textFlag = driver.findElement(By.className("__at_flag_name"));
+        Browser.fluentWait((WebDriver t) -> textFlag);
+        textFlag.sendKeys("test-archive-flag");
+        
+        WebElement deleteBtn = driver.findElement(By.className("__at_delete"));
+        deleteBtn.click();
+        
+        Browser.sleep(5);
         Browser.fluentWait((WebDriver t) -> t.findElement(By.cssSelector(".\\__at_btn_ok"))).click();
 
 
@@ -96,6 +105,11 @@ public class FeatureFlags {
         WebElement deleteModalBtn = Browser.driver.findElement(By.className("__at_delete"));
         Browser.fluentWait((WebDriver t) -> deleteModalBtn);
         deleteModalBtn.click();
+        
+        Browser.sleep(5);
+        WebElement okayBtn = Browser.driver.findElement(By.className("__at_btn_ok"));
+        Browser.fluentWait((WebDriver t) -> okayBtn);
+        okayBtn.click();
 
     }
 }

@@ -317,11 +317,17 @@ public class AllTest {
     @Test
     @Order(44)
     public void testCreateProject() {
-        projects.createProject();
+        projects.createProject("Selenium Automation Testing");
     }
     
     @Test
     @Order(45)
+    public void testCreateProject2() {
+        projects.createProject("Selenium Testing");
+    }
+    
+    @Test
+    @Order(46)
     public void testDeleteProject() {
         projects.deleteProject();
     }
