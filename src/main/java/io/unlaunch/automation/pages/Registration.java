@@ -68,8 +68,8 @@ public class Registration {
         WebElement nameElement = Browser.driver.findElement(By.cssSelector("input[name=name]"));
         nameElement.sendKeys("Unlaunch automated test");
 
-        WebElement keyElement = Browser.driver.findElement(By.cssSelector("input[name=key]"));
-        keyElement.sendKeys("Unlaunch-automated-test");
+//        WebElement keyElement = Browser.driver.findElement(By.cssSelector("input[name=key]"));
+//        keyElement.sendKeys("Unlaunch-automated-test");
 
         WebElement descElement = Browser.driver.findElement(By.cssSelector("input[name=description]"));
         descElement.sendKeys("Automated test selenium");
