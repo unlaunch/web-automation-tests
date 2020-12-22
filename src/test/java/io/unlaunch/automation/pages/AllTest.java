@@ -9,6 +9,8 @@ import io.unlaunch.automation.Browser;
 import io.unlaunch.automation.pages.featureflags.Configuration;
 import io.unlaunch.automation.pages.featureflags.Targeting;
 import io.unlaunch.automation.pages.featureflags.Variation;
+import io.unlaunch.automation.pages.settings.Members;
+import io.unlaunch.automation.pages.settings.Projects;
 
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
@@ -18,7 +20,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-public class AllTests {
+public class AllTest {
 
     private Registration registration = new Registration();
     private Authentication authentication = new Authentication();
@@ -28,6 +30,9 @@ public class AllTests {
     private Variation variation = new Variation();
     private Configuration configuration = new Configuration();
     private io.unlaunch.automation.pages.featureflags.Settings settings = new io.unlaunch.automation.pages.featureflags.Settings();
+    private Members users = new Members();
+    private Sidebar sidebar = new Sidebar();
+    private Projects projects = new Projects();
 
     @BeforeAll
     public static void init() {
@@ -116,104 +121,110 @@ public class AllTests {
     
     @Test
     @Order(13)
+    public void testdeleteFlag() {
+        featureFlags.deleteFlag();
+    }
+    
+    @Test
+    @Order(14)
     public void testCreateFlagWith3Variations() {
         featureFlags.createFeatureFlag("test-flag", "test-flag", 3);
     }
     
     @Test
-    @Order(14)
+    @Order(15)
     public void testAddWhiteList() {
         targeting.addWhitelist();
     }
     
     @Test
-    @Order(15)
+    @Order(16)
     public void testclearWhiteList() {
         targeting.removeWhiteList();
     }
     
     @Test
-    @Order(16)
+    @Order(17)
     public void testAdd50UsersToOnVariation() {
         targeting.addWhitelistToOn();
     }
     
     @Test
-    @Order(17)
+    @Order(18)
     public void testAdd25UsersToOffVariation() {
         targeting.addWhitelistToOff();
     }
     
     @Test
-    @Order(18)
+    @Order(19)
     public void testDefaultRulePercentageRollout() {
         targeting.setDefaultRulePercentageRollout("33", "33", "34");
     }
     
     @Test
-    @Order(19)
+    @Order(20)
     public void testDefaultRulePercentageRolloutAgain() {
         targeting.setDefaultRulePercentageRollout("98", "1", "1");
     }
    
     @Test
-    @Order(20)
+    @Order(21)
     public void testDefaultRuleToGrayVariation() {
         targeting.setDefaultRule("gray");
     }
    
     @Test
-    @Order(21)
+    @Order(22)
     public void testDefaultRuleToOnVariation() {
         targeting.setDefaultRule("on");
     }
     
     @Test
-    @Order(22)
+    @Order(23)
     public void testDefaultRuleToOffVariation() {
         targeting.setDefaultRule("off");
     }
     
     @Test
-    @Order(23)
+    @Order(24)
     public void testDefaultVariationToOnVar() {
         targeting.setDefaultVariation("on");
     }
     
     
     @Test
-    @Order(24)
+    @Order(25)
     public void testDefaultVariationToOffVar() {
         targeting.setDefaultVariation("off");
     }
     
     
     @Test
-    @Order(25)
+    @Order(26)
     public void testDefaultVariationToGrayVar() {
         targeting.setDefaultVariation("gray");
     }
     
     @Test
-    @Order(26)
+    @Order(27)
     public void testCreateNumberAttribute() {
         attributes.createAttribute("ltv", "Number");
     }
     
     @Test
-    @Order(27)
+    @Order(28)
     public void testCreateStringAttribute() {
         attributes.createAttribute("device", "String");
     }
     
     @Test
-    @Order(28)
+    @Order(29)
     public void testCreateBooleanAttribute() {
         attributes.createAttribute("paid", "Boolean");
     }
     
     @Test
-    @Order(29)
+    @Order(30)
     public void testAddTargettingRuleForString() {
 
         WebElement e = Browser.fluentWait((WebDriver d) -> d.findElement(By.className("__at_link_feature_list")));
@@ -226,69 +237,99 @@ public class AllTests {
     }
     
     @Test
-    @Order(30)
+    @Order(31)
     public void testAddTargettingRuleForInt() {
         targeting.addTargettingRule("ltv","Number","123",2);
     }
     
     @Test
-    @Order(31)
+    @Order(32)
     public void testAddTargettingRuleForBoolean() {
         targeting.addTargettingRule("paid","Boolean","true",3);
     }
      
     @Test
-    @Order(32)
+    @Order(33)
     public void testDelTargettingRuleForInt() {
         targeting.delTargettingRule(2);
     }
     
     @Test
-    @Order(33)
+    @Order(34)
     public void testCreateFeatureFlagForVariationPage() {
         featureFlags.createFeatureFlag("test-flag-2-var", "test-flag-2-var", 2);
     }
 
     @Test
-    @Order(34)
+    @Order(35)
     public void testAddVariation() {
         variation.addVariation();
     }
     
     @Test
-    @Order(35)
+    @Order(36)
     public void testCreateFeatureFlagForConf() {
         featureFlags.createFeatureFlag("test-flag-3-conf", "test-flag-3-conf", 3);
     }
     
     @Test
-    @Order(36)
+    @Order(37)
     public void testAddVariantConfigurations() {
         configuration.addConfiguration();
     }
     
     @Test
-    @Order(37)
+    @Order(38)
     public void testCreateFeatureFlagForSettings() {
         featureFlags.createFeatureFlag("test-flag-4-settings", "test-flag-4-settings", 4);
     }
     
     @Test
-    @Order(38)
+    @Order(39)
     public void testChangeFlagName() {
         settings.changeFlagName();
     }
     
     @Test
-    @Order(39)
+    @Order(40)
     public void testChangeFlagDescription() {
         settings.changeFlagDescription();
     }
     
     @Test
-    @Order(40)
+    @Order(41)
     public void testSetFlagToClientSide() {
         settings.setFlagToClientSide();
+    }
+    
+    @Test
+    @Order(42)
+    public void testAddMember() {
+        users.addMember();
+    }
+    
+    @Test
+    @Order(43)
+    public void testChangeEnv() {
+        sidebar.changeEnviroment();
+    }
+    
+    @Test
+    @Order(44)
+    public void testCreateProject() {
+        projects.createProject("Selenium Automation Testing");
+    }
+    
+    @Test
+    @Order(45)
+    public void testCreateProject2() {
+        projects.createProject("Selenium Testing");
+    }
+    
+    @Test
+    @Order(46)
+    public void testDeleteProject() {
+        projects.deleteProject();
     }
     
     @AfterAll

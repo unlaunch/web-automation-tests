@@ -10,7 +10,7 @@ public class DefaultSettings implements Settings {
 
     @Override
     public  String getHostname() {
-        return "https://app.unlaunch.io";
+        return "https://app-qa.unlaunch.io";
     }
 
     @Override
