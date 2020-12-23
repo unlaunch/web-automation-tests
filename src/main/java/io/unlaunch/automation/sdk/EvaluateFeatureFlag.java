@@ -29,7 +29,9 @@ public class EvaluateFeatureFlag {
     private UnlaunchClient client;
 
     private void initializeClient() {
-        client = UnlaunchClient.create(getSdkKey());
+        String sdkKey =  getSdkKey();
+        LOG.info("SDK key fetched {}",sdkKey);
+        client = UnlaunchClient.builder().host(Browser.apiHostname).sdkKey(sdkKey).build();
 
         try {
             client.awaitUntilReady(10, TimeUnit.SECONDS);

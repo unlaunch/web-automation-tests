@@ -14,6 +14,11 @@ public class DefaultSettings implements Settings {
     }
 
     @Override
+    public String getApiHostname() {
+        return "https://api-qa.unlaunch.io";
+    }
+
+    @Override
     public String getClearInputFieldSequence() {
         return Keys.chord(Keys.CONTROL + "a" + Keys.DELETE);
     }

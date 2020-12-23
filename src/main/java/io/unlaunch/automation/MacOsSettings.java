@@ -10,8 +10,13 @@ public class MacOsSettings  implements Settings {
 
     @Override
     public String getHostname() {
-        // return "https://app-qa.unlaunch.io";
-        return "http://localhost:3000";
+         return "https://app-qa.unlaunch.io";
+//        return "http://localhost:3000";
+    }
+
+    @Override
+    public String getApiHostname() {
+        return "https://api-qa.unlaunch.io";
     }
 
     @Override
