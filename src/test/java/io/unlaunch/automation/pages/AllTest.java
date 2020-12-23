@@ -120,7 +120,22 @@ public class AllTest {
     @Order(12)
     public void testSDKReturnedDefaultVariation() {
         String var = eval.evalInactiveFlagReturnsDefaultVariation();
-        Assertions.assertEquals("off", var);
+        
+        WebElement e = Browser.fluentWait((WebDriver d) -> d.findElement(By.className("__at_link_feature_list")));
+        Browser.click(e);
+        
+        Browser.sleep(5);
+        WebElement flagLink = Browser.driver.findElement(By.linkText("test-archive-flag"));
+        Browser.fluentWait((WebDriver t) -> flagLink);
+        flagLink.click();
+        
+        Browser.sleep(5);
+        WebElement defaultVar = Browser.driver.findElement(By.className("__at_select_offvariation"));
+        Browser.fluentWait((WebDriver t) -> defaultVar);
+        String varText = defaultVar.getText();
+        
+        Assertions.assertEquals(varText, var);
+        
     }
 
     @Test
@@ -298,6 +313,12 @@ public class AllTest {
     @Test
     @Order(39)
     public void testAddTargettingRuleForInt() {
+        WebElement e = Browser.fluentWait((WebDriver d) -> d.findElement(By.className("__at_link_feature_list")));
+        Browser.click(e);
+
+        e = Browser.fluentWait((WebDriver d) -> d.findElement(By.linkText("test-flag")));
+        Browser.click(e);
+        
         targeting.addTargettingRule("ltv", "Number", "123", 2);
     }
 
@@ -311,6 +332,12 @@ public class AllTest {
     @Test
     @Order(41)
     public void testAddTargettingRuleForBoolean() {
+        WebElement e = Browser.fluentWait((WebDriver d) -> d.findElement(By.className("__at_link_feature_list")));
+        Browser.click(e);
+
+        e = Browser.fluentWait((WebDriver d) -> d.findElement(By.linkText("test-flag")));
+        Browser.click(e);
+        
         targeting.addTargettingRule("paid", "Boolean", "true", 3);
     }
 
@@ -324,6 +351,12 @@ public class AllTest {
     @Test
     @Order(43)
     public void testDelTargettingRuleForInt() {
+        WebElement e = Browser.fluentWait((WebDriver d) -> d.findElement(By.className("__at_link_feature_list")));
+        Browser.click(e);
+
+        e = Browser.fluentWait((WebDriver d) -> d.findElement(By.linkText("test-flag")));
+        Browser.click(e);
+        
         targeting.delTargettingRule(2);
     }
 

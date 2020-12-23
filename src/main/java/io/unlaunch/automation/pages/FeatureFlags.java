@@ -60,6 +60,15 @@ public class FeatureFlags {
     }
 
     public void archiveFlag() {
+        WebElement e = Browser.fluentWait((WebDriver d) -> d.findElement(By.className("__at_link_feature_list")));
+        Browser.click(e);
+        
+        Browser.sleep(5);
+        WebElement flagLink = Browser.driver.findElement(By.linkText("test-archive-flag"));
+        Browser.fluentWait((WebDriver t) -> flagLink);
+        flagLink.click();
+        
+        Browser.sleep(5);
         WebElement settings = Browser.driver.findElement(By.id("nav-settings-tab"));
         Browser.fluentWait((WebDriver t) -> settings);
         settings.click();

@@ -18,20 +18,21 @@ import org.openqa.selenium.WebElement;
 public class Targeting {
 
     public void addWhitelist() {
-        try {
-            WebElement flagNavLink = Browser.driver.findElement(By.className("__at_link_feature_list"));
-            Browser.fluentWait((WebDriver t) -> flagNavLink);
-            flagNavLink.click();
-
-        } catch (org.openqa.selenium.StaleElementReferenceException ex) {
-            WebElement flagNavLink = Browser.driver.findElement(By.className("__at_link_feature_list"));
-            Browser.fluentWait((WebDriver t) -> flagNavLink);
-            flagNavLink.click();
-        }
-
-        WebElement flagLink = Browser.driver.findElement(By.linkText("test-flag"));
-        Browser.fluentWait((WebDriver t) -> flagLink);
-        flagLink.click();
+        Browser.sleep(5);
+//        try {
+//            WebElement flagNavLink = Browser.driver.findElement(By.className("__at_link_feature_list"));
+//            Browser.fluentWait((WebDriver t) -> flagNavLink);
+//            flagNavLink.click();
+//
+//        } catch (org.openqa.selenium.StaleElementReferenceException ex) {
+//            WebElement flagNavLink = Browser.driver.findElement(By.className("__at_link_feature_list"));
+//            Browser.fluentWait((WebDriver t) -> flagNavLink);
+//            flagNavLink.click();
+//        }
+//
+//        WebElement flagLink = Browser.driver.findElement(By.linkText("test-flag"));
+//        Browser.fluentWait((WebDriver t) -> flagLink);
+//        flagLink.click();
 
 
         WebElement targetUser = Browser.driver.findElement(By.cssSelector("button.__at_btn_add_whitelist"));
@@ -67,6 +68,8 @@ public class Targeting {
 
     public void addWhitelistToOn() {
 
+        Browser.sleep(5);
+        
         WebElement targetUser = Browser.driver.findElement(By.cssSelector("button.__at_btn_add_whitelist"));
         Browser.fluentWait((WebDriver t) -> targetUser);
         targetUser.click();
@@ -87,6 +90,16 @@ public class Targeting {
     }
 
     public void addWhitelistToOff() {
+        Browser.sleep(5);
+        
+        WebElement e = Browser.fluentWait((WebDriver d) -> d.findElement(By.className("__at_link_feature_list")));
+        Browser.click(e);
+        
+        Browser.sleep(5);
+        WebElement flagLink = Browser.driver.findElement(By.linkText("test-flag"));
+        Browser.fluentWait((WebDriver t) -> flagLink);
+        flagLink.click();
+        
         WebElement off = Browser.driver.findElement(By.cssSelector("div.__at_multiselect_off div div div input"));
         Browser.fluentWait((WebDriver t) -> off);
         for (int i = 51; i < 76; i++) {
@@ -102,6 +115,8 @@ public class Targeting {
     }
 
     public void removeWhiteList() {
+        Browser.sleep(5);
+        
         WebElement on = Browser.driver.findElement(By.cssSelector("div.__at_multiselect_on div div div input"));
         Browser.fluentWait((WebDriver t) -> on);
         for (int i = 0; i < 15; i++) {
@@ -127,8 +142,16 @@ public class Targeting {
     }
 
     public void setDefaultRulePercentageRollout(String val1, String val2, String val3) {
-//        Browser.sleep(3);
+        Browser.sleep(5);
 
+        WebElement e = Browser.fluentWait((WebDriver d) -> d.findElement(By.className("__at_link_feature_list")));
+        Browser.click(e);
+        
+        Browser.sleep(5);
+        WebElement flagLink = Browser.driver.findElement(By.linkText("test-flag"));
+        Browser.fluentWait((WebDriver t) -> flagLink);
+        flagLink.click();
+        
         WebElement defaultRule = Browser.driver.findElement(By.cssSelector("div.__at_select_default div div div input"));
         Browser.fluentWait(((t) -> {
             return defaultRule;
