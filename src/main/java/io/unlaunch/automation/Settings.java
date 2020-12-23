@@ -7,5 +7,7 @@ public interface Settings {
 
     String  getClearInputFieldSequence();
 
+    public String getApiHostname();
+
 
 }
