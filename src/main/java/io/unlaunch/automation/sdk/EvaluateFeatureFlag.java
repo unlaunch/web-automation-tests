@@ -32,9 +32,7 @@ public class EvaluateFeatureFlag {
         return client;
     }
 
-    public static void initializeClient() {
-        String sdkKey =  getSdkKey();
-        LOG.info("SDK key fetched {}",sdkKey);
+    public static void initializeClient(String sdkKey) {
         client = UnlaunchClient.builder().host(Browser.apiHostname).sdkKey(sdkKey).build();
 
         try {
@@ -125,7 +123,7 @@ public class EvaluateFeatureFlag {
         return variationConfigAsMap;
     }
 
-    private static String getSdkKey() {
+    public static String getSdkKey() {
         Browser.sleep(15);
         WebElement settings = driver.findElement(By.className("__at_nav_settings"));
         Browser.fluentWait((WebDriver t) -> settings);

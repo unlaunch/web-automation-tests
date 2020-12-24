@@ -36,6 +36,7 @@ public class AllTest {
     private Sidebar sidebar = new Sidebar();
     private Projects projects = new Projects();
     private EvaluateFeatureFlag eval = new EvaluateFeatureFlag();
+    private String sdkKey;
 
     @BeforeAll
     public static void init() {
@@ -119,7 +120,9 @@ public class AllTest {
     @Test
     @Order(12)
     public void testSDKReturnedDefaultVariation() {
-        EvaluateFeatureFlag.initializeClient();
+        sdkKey = EvaluateFeatureFlag.getSdkKey();
+        EvaluateFeatureFlag.initializeClient(sdkKey);
+        
         String var = eval.evalInactiveFlagReturnsDefaultVariation();
         
         WebElement e = Browser.fluentWait((WebDriver d) -> d.findElement(By.className("__at_link_feature_list")));
@@ -148,6 +151,8 @@ public class AllTest {
     @Test
     @Order(14)
     public void testSDKReturnedControlVariation() {
+        EvaluateFeatureFlag.initializeClient(sdkKey);
+        
         String var = eval.evalFlagReturnsControlVariation();
         Assertions.assertEquals("control", var);
     }
@@ -161,6 +166,8 @@ public class AllTest {
     @Test
     @Order(16)
     public void testSDKAfterDeleteFlagReturnedControlVariation() {
+        EvaluateFeatureFlag.initializeClient(sdkKey);
+        
         String var = eval.evalFlagReturnsControlVariation();
         Assertions.assertEquals("control", var);
     }
@@ -192,6 +199,8 @@ public class AllTest {
     @Test
     @Order(21)
     public void testSDKWhiteListForOnVariation() {
+        EvaluateFeatureFlag.initializeClient(sdkKey);
+        
         String var = eval.evalWhiteListForOnVariation();
         Assertions.assertEquals("on", var);
     }
@@ -205,6 +214,8 @@ public class AllTest {
     @Test
     @Order(23)
     public void testSDKWhiteListForOffVariation() {
+        EvaluateFeatureFlag.initializeClient(sdkKey);
+        
         String var = eval.evalWhiteListForOffVariation();
         Assertions.assertEquals("off", var);
     }
@@ -212,6 +223,8 @@ public class AllTest {
     @Test
     @Order(24)
     public void testSDKUsingRandomUserIdReturnedDefaultRule() {
+        EvaluateFeatureFlag.initializeClient(sdkKey);
+        
         String var = eval.evalWhiteListWithRandomUser();
         
         WebElement defaultRule = Browser.driver.findElement(By.className("__at_select_default"));
@@ -230,6 +243,8 @@ public class AllTest {
     @Test
     @Order(26)
     public void testSDKEvalFlagUsingDefaultPR() {
+        EvaluateFeatureFlag.initializeClient(sdkKey);
+        
         boolean var = eval.evalDefaultRulePercentageRollout();
         Assertions.assertTrue(var);
     }
@@ -312,6 +327,7 @@ public class AllTest {
     @Test
     @Order(38)
     public void testSDKEvalFlagTarettingRuleForString() {
+        EvaluateFeatureFlag.initializeClient(sdkKey);
         String var = eval.evalTargetingRuleForString();
         Assertions.assertEquals("on", var);
     }
@@ -331,6 +347,7 @@ public class AllTest {
     @Test
     @Order(40)
     public void testSDKEvalFlagTarettingRuleForInt() {
+        EvaluateFeatureFlag.initializeClient(sdkKey);
         String var = eval.evalTargetingRuleForInteger();
         Assertions.assertEquals("on", var);
     }
@@ -350,6 +367,7 @@ public class AllTest {
     @Test
     @Order(42)
     public void testSDKEvalFlagTarettingRuleForBoolean() {
+        EvaluateFeatureFlag.initializeClient(sdkKey);
         String var = eval.evalTargetingRuleForBoolean();
         Assertions.assertEquals("on", var);
     }
@@ -393,6 +411,7 @@ public class AllTest {
     @Test
     @Order(48)
     public void testSDKEvalVariantConfigs() {
+        EvaluateFeatureFlag.initializeClient(sdkKey);
         Map<String, String> map = eval.evalVariantConfigurations();
         String val = map.get("a10");
         Assertions.assertEquals("435", val);
