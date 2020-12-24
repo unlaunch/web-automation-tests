@@ -84,15 +84,6 @@ public class Targeting {
 
     public void addWhitelistToOff() {
         Browser.sleep(5);
-        
-        WebElement e = Browser.fluentWait((WebDriver d) -> d.findElement(By.className("__at_link_feature_list")));
-        Browser.click(e);
-        
-        Browser.sleep(5);
-        WebElement flagLink = Browser.driver.findElement(By.linkText("test-flag"));
-        Browser.fluentWait((WebDriver t) -> flagLink);
-        flagLink.click();
-        
         WebElement off = Browser.driver.findElement(By.cssSelector("div.__at_multiselect_off div div div input"));
         Browser.fluentWait((WebDriver t) -> off);
         for (int i = 51; i < 76; i++) {
@@ -100,6 +91,8 @@ public class Targeting {
             off.sendKeys(Keys.ENTER);
         }
 
+        Browser.sleep(1);
+        
         Browser.driver.findElement(By.cssSelector("button.__at_btn_save")).click();
         Browser.sleep(1);
 
@@ -135,16 +128,8 @@ public class Targeting {
     }
 
     public void setDefaultRulePercentageRollout(String val1, String val2, String val3) {
-        Browser.sleep(5);
-
-        WebElement e = Browser.fluentWait((WebDriver d) -> d.findElement(By.className("__at_link_feature_list")));
-        Browser.click(e);
         
-        Browser.sleep(5);
-        WebElement flagLink = Browser.driver.findElement(By.linkText("test-flag"));
-        Browser.fluentWait((WebDriver t) -> flagLink);
-        flagLink.click();
-        
+        Browser.sleep(3);
         WebElement defaultRule = Browser.driver.findElement(By.cssSelector("div.__at_select_default div div div input"));
         Browser.fluentWait(((t) -> {
             return defaultRule;
@@ -178,6 +163,7 @@ public class Targeting {
         defaultRule.sendKeys(var);
         defaultRule.sendKeys(Keys.ENTER);
 
+        
         Browser.fluentWait((WebDriver t) -> t.findElement(By.cssSelector("button.__at_btn_save"))).click();
         Browser.sleep(1);
         Browser.fluentWait((WebDriver t) -> t.findElement(By.cssSelector("button.__at_btn_ok"))).click();

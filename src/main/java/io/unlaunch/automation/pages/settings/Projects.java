@@ -55,6 +55,7 @@ public class Projects {
 
     public void deleteProject() {
 
+        Browser.sleep(5);
         WebElement settings = driver.findElement(By.className("__at_nav_settings"));
         Browser.fluentWait((WebDriver t) -> settings);
         settings.click();
@@ -71,7 +72,7 @@ public class Projects {
         Browser.sleep(5);
         WebElement deleteText = driver.findElement(By.className("__at_flag_name"));
         Browser.fluentWait((WebDriver t) -> deleteText);
-        deleteText.sendKeys("Selenium Automation Testing");
+        deleteText.sendKeys("selenium-automation-testing");
 
         driver.findElement(By.className("__at_delete")).click();
         

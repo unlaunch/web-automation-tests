@@ -26,9 +26,13 @@ import org.openqa.selenium.WebElement;
 public class EvaluateFeatureFlag {
 
     private static final Logger LOG = LogManager.getLogger(EvaluateFeatureFlag.class);
-    private UnlaunchClient client;
+    private static UnlaunchClient client;
 
-    private void initializeClient() {
+    public UnlaunchClient getClient() {
+        return client;
+    }
+
+    public static void initializeClient() {
         String sdkKey =  getSdkKey();
         LOG.info("SDK key fetched {}",sdkKey);
         client = UnlaunchClient.builder().host(Browser.apiHostname).sdkKey(sdkKey).build();
@@ -41,53 +45,42 @@ public class EvaluateFeatureFlag {
 
     }
 
-    private void close() {
+    public static void close() {
         client.shutdown();
     }
 
     public String evalInactiveFlagReturnsDefaultVariation() {
 
-        initializeClient();
         String variation = client.getVariation("test-archive-flag", "user-123");
-        close();
         return variation;
     }
 
     public String evalFlagReturnsControlVariation() {
 
-        initializeClient();
         String variation = client.getVariation("test-archive-flag", "user-456");
-        close();
         return variation;
     }
 
     public String evalWhiteListForOnVariation() {
 
-        initializeClient();
         String variation = client.getVariation("test-flag", "1");
-        close();
         return variation;
     }
 
     public String evalWhiteListForOffVariation() {
 
-        initializeClient();
         String variation = client.getVariation("test-flag", "52");
-        close();
         return variation;
     }
 
     public String evalWhiteListWithRandomUser() {
 
-        initializeClient();
         String variation = client.getVariation("test-flag", "123");
-        close();
         return variation;
     }
 
     public boolean evalDefaultRulePercentageRollout() {
 
-        initializeClient();
         // Get variation
         int onCount = 0;
         int offCount = 0;
@@ -103,48 +96,37 @@ public class EvaluateFeatureFlag {
             }
         }
 
-        close();
         return (onCount >= 28 && onCount <= 36) && (offCount >= 28 && offCount <= 36) && (grayCount >= 28 && grayCount <= 36);
     }
 
     public String evalTargetingRuleForString() {
 
-        initializeClient();
         String variation = client.getVariation("test-flag", "user-123", UnlaunchAttribute.newString("device", "ABCS"));
-        close();
         return variation;
     }
 
     public String evalTargetingRuleForInteger() {
 
-        initializeClient();
         String variation = client.getVariation("test-flag", "user-123", UnlaunchAttribute.newNumber("ltv", 123));
-        close();
         return variation;
     }
 
     public String evalTargetingRuleForBoolean() {
 
-        initializeClient();
         String variation = client.getVariation("test-flag", "user-123", UnlaunchAttribute.newBoolean("paid", true));
-        
-        close();
         return variation;
     }
 
     public Map<String, String> evalVariantConfigurations() {
 
-        initializeClient();
-        
         UnlaunchFeature feature = client.getFeature("test-flag-3-conf", "user-123");
         Map<String, String> variationConfigAsMap = feature.getVariationConfigAsMap();
 
-        close();
         return variationConfigAsMap;
     }
 
-    private String getSdkKey() {
-        Browser.sleep(10);
+    private static String getSdkKey() {
+        Browser.sleep(15);
         WebElement settings = driver.findElement(By.className("__at_nav_settings"));
         Browser.fluentWait((WebDriver t) -> settings);
         settings.click();

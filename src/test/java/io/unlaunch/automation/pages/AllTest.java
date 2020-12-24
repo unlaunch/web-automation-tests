@@ -46,7 +46,7 @@ public class AllTest {
 
     @BeforeEach
     public void sleepBeforeEachTest() {
-        Browser.sleep(5);
+        Browser.sleep(8);
     }
 
     @Test
@@ -119,6 +119,7 @@ public class AllTest {
     @Test
     @Order(12)
     public void testSDKReturnedDefaultVariation() {
+        EvaluateFeatureFlag.initializeClient();
         String var = eval.evalInactiveFlagReturnsDefaultVariation();
         
         WebElement e = Browser.fluentWait((WebDriver d) -> d.findElement(By.className("__at_link_feature_list")));
@@ -212,7 +213,12 @@ public class AllTest {
     @Order(24)
     public void testSDKUsingRandomUserIdReturnedDefaultRule() {
         String var = eval.evalWhiteListWithRandomUser();
-        Assertions.assertEquals("off", var);
+        
+        WebElement defaultRule = Browser.driver.findElement(By.className("__at_select_default"));
+        Browser.fluentWait((WebDriver t) -> defaultRule);
+        String value = defaultRule.getText();
+        
+        Assertions.assertEquals(value, var);
     }
 
     @Test
@@ -388,7 +394,8 @@ public class AllTest {
     @Order(48)
     public void testSDKEvalVariantConfigs() {
         Map<String, String> map = eval.evalVariantConfigurations();
-        Assertions.assertEquals("123", map.get("a2"));
+        String val = map.get("a10");
+        Assertions.assertEquals("435", val);
     }
 
     @Test
@@ -449,6 +456,7 @@ public class AllTest {
     public static void finish() {
         // Comment this if you want to leave the browser open
         Browser.driver.quit();
+        EvaluateFeatureFlag.close();
     }
 
 }
