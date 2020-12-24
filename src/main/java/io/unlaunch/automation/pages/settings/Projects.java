@@ -19,15 +19,19 @@ public class Projects {
 
     public void createProject(String projectName) {
 
+        Browser.sleep(1);
+
         WebElement settings = driver.findElement(By.className("__at_nav_settings"));
         Browser.fluentWait((WebDriver t) -> settings);
         settings.click();
+
+        Browser.sleep(1);
 
         WebElement members = driver.findElement(By.className("__at_projects"));
         Browser.fluentWait((WebDriver t) -> members);
         members.click();
 
-        Browser.sleep(5);
+        Browser.sleep(2);
         WebElement btn = driver.findElement(By.className("__at_create_project"));
         Browser.fluentWait((WebDriver t) -> btn);
         btn.click();

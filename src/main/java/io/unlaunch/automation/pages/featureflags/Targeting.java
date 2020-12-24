@@ -18,22 +18,15 @@ import org.openqa.selenium.WebElement;
 public class Targeting {
 
     public void addWhitelist() {
-        Browser.sleep(5);
-//        try {
-//            WebElement flagNavLink = Browser.driver.findElement(By.className("__at_link_feature_list"));
-//            Browser.fluentWait((WebDriver t) -> flagNavLink);
-//            flagNavLink.click();
-//
-//        } catch (org.openqa.selenium.StaleElementReferenceException ex) {
-//            WebElement flagNavLink = Browser.driver.findElement(By.className("__at_link_feature_list"));
-//            Browser.fluentWait((WebDriver t) -> flagNavLink);
-//            flagNavLink.click();
-//        }
-//
-//        WebElement flagLink = Browser.driver.findElement(By.linkText("test-flag"));
-//        Browser.fluentWait((WebDriver t) -> flagLink);
-//        flagLink.click();
+        Browser.sleep(2);
 
+        WebElement enableBtn =  Browser.driver.findElement(By.className("__at_btn_enable"));
+        enableBtn.click();
+        Browser.sleep(2);
+
+        WebElement yesBtn =  Browser.driver.findElement(By.className("__at_btn_yes"));
+        yesBtn.click();
+        Browser.sleep(2);
 
         WebElement targetUser = Browser.driver.findElement(By.cssSelector("button.__at_btn_add_whitelist"));
         Browser.fluentWait((WebDriver t) -> targetUser);
@@ -203,7 +196,11 @@ public class Targeting {
     }
 
     public void addTargettingRule(String attr, String type, String value, Integer index) {
+        Browser.sleep(2);
+
         Browser.fluentWait((WebDriver t) -> t.findElement(By.cssSelector("button.__at_btn_rule_add"))).click();
+
+        Browser.sleep(2);
 
         WebElement clauseAttr = Browser.driver.findElement(By.cssSelector("div.__at_select_attr_" + index + " div div div input"));
         Browser.fluentWait((WebDriver t) -> clauseAttr);
@@ -214,6 +211,8 @@ public class Targeting {
         Browser.fluentWait((WebDriver t) -> clauseOp);
         clauseOp.sendKeys("Equals");
         clauseOp.sendKeys(Keys.ENTER);
+
+        Browser.sleep(2);
 
 
         if (type.equals("Boolean")) {
