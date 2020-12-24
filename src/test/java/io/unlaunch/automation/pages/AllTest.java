@@ -121,6 +121,9 @@ public class AllTest {
     @Order(12)
     public void testSDKReturnedDefaultVariation() {
         sdkKey = EvaluateFeatureFlag.getSdkKey();
+        
+        Assertions.assertTrue(sdkKey != null && !sdkKey.isEmpty(), "SDK key can not be null");
+        
         EvaluateFeatureFlag.initializeClient(sdkKey);
         
         String var = eval.evalInactiveFlagReturnsDefaultVariation();
