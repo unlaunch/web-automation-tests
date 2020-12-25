@@ -61,7 +61,7 @@ public class Targeting {
 
     public void addWhitelistToOn() {
 
-        Browser.sleep(5);
+        Browser.sleep(2);
         
         WebElement targetUser = Browser.driver.findElement(By.cssSelector("button.__at_btn_add_whitelist"));
         Browser.fluentWait((WebDriver t) -> targetUser);

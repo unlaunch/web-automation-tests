@@ -63,12 +63,12 @@ public class FeatureFlags {
         WebElement e = Browser.fluentWait((WebDriver d) -> d.findElement(By.className("__at_link_feature_list")));
         Browser.click(e);
         
-        Browser.sleep(5);
+        Browser.sleep(2);
         WebElement flagLink = Browser.driver.findElement(By.linkText("test-archive-flag"));
         Browser.fluentWait((WebDriver t) -> flagLink);
         flagLink.click();
         
-        Browser.sleep(5);
+        Browser.sleep(2);
         WebElement settings = Browser.driver.findElement(By.id("nav-settings-tab"));
         Browser.fluentWait((WebDriver t) -> settings);
         settings.click();
@@ -78,7 +78,7 @@ public class FeatureFlags {
         Browser.fluentWait((WebDriver t) -> btnArchive);
         btnArchive.click();
         
-        Browser.sleep(5);
+        Browser.sleep(2);
         WebElement textFlag = driver.findElement(By.className("__at_flag_name"));
         Browser.fluentWait((WebDriver t) -> textFlag);
         textFlag.sendKeys("test-archive-flag");
@@ -86,7 +86,7 @@ public class FeatureFlags {
         WebElement deleteBtn = driver.findElement(By.className("__at_delete"));
         deleteBtn.click();
         
-        Browser.sleep(5);
+        Browser.sleep(2);
         Browser.fluentWait((WebDriver t) -> t.findElement(By.cssSelector(".\\__at_btn_ok"))).click();
 
 
@@ -96,17 +96,17 @@ public class FeatureFlags {
         WebElement e = Browser.fluentWait((WebDriver d) -> d.findElement(By.className("__at_link_feature_list")));
         Browser.click(e);
         
-        Browser.sleep(5);
+        Browser.sleep(2);
         WebElement linkArchive = Browser.driver.findElement(By.className("__at_link_archive"));
         Browser.fluentWait((WebDriver t) -> linkArchive);
         linkArchive.click();
 
-        Browser.sleep(5);
+        Browser.sleep(2);
         WebElement btnDelete = Browser.driver.findElement(By.className("__at_btn_delete"));
         Browser.fluentWait((WebDriver t) -> btnDelete);
         btnDelete.click();
         
-        Browser.sleep(5);
+        Browser.sleep(2);
         WebElement textDelete = Browser.driver.findElement(By.className("__at_flag_name"));
         Browser.fluentWait((WebDriver t) -> textDelete);
         textDelete.sendKeys("test-archive-flag");
@@ -115,7 +115,7 @@ public class FeatureFlags {
         Browser.fluentWait((WebDriver t) -> deleteModalBtn);
         deleteModalBtn.click();
         
-        Browser.sleep(5);
+        Browser.sleep(2);
         WebElement okayBtn = Browser.driver.findElement(By.className("__at_btn_ok"));
         Browser.fluentWait((WebDriver t) -> okayBtn);
         okayBtn.click();

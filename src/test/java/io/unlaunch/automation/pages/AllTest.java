@@ -36,7 +36,7 @@ public class AllTest {
     private Sidebar sidebar = new Sidebar();
     private Projects projects = new Projects();
     private EvaluateFeatureFlag eval = new EvaluateFeatureFlag();
-    private String sdkKey;
+    private static String sdkKey;
 
     @BeforeAll
     public static void init() {
@@ -47,7 +47,7 @@ public class AllTest {
 
     @BeforeEach
     public void sleepBeforeEachTest() {
-        Browser.sleep(8);
+        Browser.sleep(1);
     }
 
     @Test
@@ -121,6 +121,9 @@ public class AllTest {
     @Order(12)
     public void testSDKReturnedDefaultVariation() {
         sdkKey = EvaluateFeatureFlag.getSdkKey();
+
+        Assertions.assertTrue( sdkKey != null && !sdkKey.isEmpty(), "SDK key cannot be null");
+
         EvaluateFeatureFlag.initializeClient(sdkKey);
         
         String var = eval.evalInactiveFlagReturnsDefaultVariation();
@@ -128,12 +131,12 @@ public class AllTest {
         WebElement e = Browser.fluentWait((WebDriver d) -> d.findElement(By.className("__at_link_feature_list")));
         Browser.click(e);
         
-        Browser.sleep(5);
+        Browser.sleep(2);
         WebElement flagLink = Browser.driver.findElement(By.linkText("test-archive-flag"));
         Browser.fluentWait((WebDriver t) -> flagLink);
         flagLink.click();
         
-        Browser.sleep(5);
+        Browser.sleep(2);
         WebElement defaultVar = Browser.driver.findElement(By.className("__at_select_offvariation"));
         Browser.fluentWait((WebDriver t) -> defaultVar);
         String varText = defaultVar.getText();
@@ -151,6 +154,8 @@ public class AllTest {
     @Test
     @Order(14)
     public void testSDKReturnedControlVariation() {
+        Assertions.assertTrue( sdkKey != null && !sdkKey.isEmpty(), "SDK key cannot be null: " + sdkKey);
+
         EvaluateFeatureFlag.initializeClient(sdkKey);
         
         String var = eval.evalFlagReturnsControlVariation();
@@ -411,10 +416,16 @@ public class AllTest {
     @Test
     @Order(48)
     public void testSDKEvalVariantConfigs() {
+        Assertions.assertTrue( sdkKey != null && !sdkKey.isEmpty(), "SDK key cannot be null: " + sdkKey);
+
         EvaluateFeatureFlag.initializeClient(sdkKey);
+
         Map<String, String> map = eval.evalVariantConfigurations();
+
+        Assertions.assertTrue(map != null && map.size() > 0);
+
         String val = map.get("a10");
-        Assertions.assertEquals("435", val);
+        Assertions.assertEquals("123", val);
     }
 
     @Test

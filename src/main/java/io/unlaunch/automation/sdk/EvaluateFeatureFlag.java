@@ -33,12 +33,14 @@ public class EvaluateFeatureFlag {
     }
 
     public static void initializeClient(String sdkKey) {
+        LOG.info("SDK KEY {}", sdkKey);
         client = UnlaunchClient.builder().host(Browser.apiHostname).sdkKey(sdkKey).build();
 
         try {
             client.awaitUntilReady(10, TimeUnit.SECONDS);
         } catch (InterruptedException | TimeoutException e) {
             LOG.error("client wasn't ready " + e.getMessage());
+            throw new RuntimeException("client wasn't ready");
         }
 
     }
@@ -118,13 +120,19 @@ public class EvaluateFeatureFlag {
     public Map<String, String> evalVariantConfigurations() {
 
         UnlaunchFeature feature = client.getFeature("test-flag-3-conf", "user-123");
+        if (feature == null) {
+            throw new RuntimeException("feature was null");
+        }
+
+        LOG.info("feature for config {} {} {}", feature.getEvaluationReason(), feature.getVariationKey());
+
         Map<String, String> variationConfigAsMap = feature.getVariationConfigAsMap();
 
         return variationConfigAsMap;
     }
 
     public static String getSdkKey() {
-        Browser.sleep(15);
+        Browser.sleep(5);
         WebElement settings = driver.findElement(By.className("__at_nav_settings"));
         Browser.fluentWait((WebDriver t) -> settings);
         settings.click();

@@ -40,9 +40,8 @@ public class Browser {
         driver.get(url);
     }
 
-
     public static void sleep(int seconds) {
-        seconds = seconds +5;
+        seconds = seconds +2;
         try {
             Thread.sleep(seconds * 1000);
         } catch (InterruptedException ie) {
