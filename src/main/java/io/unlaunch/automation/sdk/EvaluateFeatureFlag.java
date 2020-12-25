@@ -124,7 +124,7 @@ public class EvaluateFeatureFlag {
             throw new RuntimeException("feature was null");
         }
 
-        LOG.info("feature for config {} {} {}", feature.getEvaluationReason(), feature.getVariationKey());
+        LOG.info("feature for config {} {} {}", feature.getEvaluationReason(), feature.getVariation());
 
         Map<String, String> variationConfigAsMap = feature.getVariationConfigAsMap();
 
