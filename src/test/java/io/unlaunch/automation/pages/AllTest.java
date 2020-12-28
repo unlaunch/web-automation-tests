@@ -424,8 +424,8 @@ public class AllTest {
 
         Assertions.assertTrue(map != null && map.size() > 0);
 
-        String val = map.get("a10");
-        Assertions.assertEquals("123", val);
+        String val = map.get("a110");
+        Assertions.assertEquals("898", val);
     }
 
     @Test
