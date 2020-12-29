@@ -25,6 +25,7 @@ public class Browser {
 
         System.setProperty("webdriver.chrome.driver", settings.getWebDriverLocation());
         hostname = settings.getHostname();
+        apiHostname = settings.getApiHostname();
         logoutUrl = settings.getHostname() + "/logout";
         clearInputFieldKeySequence = settings.getClearInputFieldSequence();
     }
@@ -34,14 +35,13 @@ public class Browser {
     public static final String emailAddress = "unlaunch.test+" + UUID.randomUUID().toString() + "@gmail.com";
     public static WebDriver driver = new ChromeDriver(getChromeOptions());
     public static final String logoutUrl;
-
+    public static final String apiHostname;
     public static void goTo(String url) {
         driver.get(url);
     }
 
-
     public static void sleep(int seconds) {
-        seconds = seconds +5;
+        seconds = seconds +2;
         try {
             Thread.sleep(seconds * 1000);
         } catch (InterruptedException ie) {

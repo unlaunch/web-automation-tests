@@ -19,15 +19,19 @@ public class Projects {
 
     public void createProject(String projectName) {
 
+        Browser.sleep(1);
+
         WebElement settings = driver.findElement(By.className("__at_nav_settings"));
         Browser.fluentWait((WebDriver t) -> settings);
         settings.click();
+
+        Browser.sleep(1);
 
         WebElement members = driver.findElement(By.className("__at_projects"));
         Browser.fluentWait((WebDriver t) -> members);
         members.click();
 
-        Browser.sleep(5);
+        Browser.sleep(2);
         WebElement btn = driver.findElement(By.className("__at_create_project"));
         Browser.fluentWait((WebDriver t) -> btn);
         btn.click();
@@ -51,6 +55,7 @@ public class Projects {
 
     public void deleteProject() {
 
+        Browser.sleep(5);
         WebElement settings = driver.findElement(By.className("__at_nav_settings"));
         Browser.fluentWait((WebDriver t) -> settings);
         settings.click();
@@ -67,7 +72,7 @@ public class Projects {
         Browser.sleep(5);
         WebElement deleteText = driver.findElement(By.className("__at_flag_name"));
         Browser.fluentWait((WebDriver t) -> deleteText);
-        deleteText.sendKeys("Selenium Automation Testing");
+        deleteText.sendKeys("selenium-automation-testing");
 
         driver.findElement(By.className("__at_delete")).click();
         

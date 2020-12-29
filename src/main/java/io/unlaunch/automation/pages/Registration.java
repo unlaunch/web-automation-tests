@@ -68,8 +68,8 @@ public class Registration {
         WebElement nameElement = Browser.driver.findElement(By.cssSelector("input[name=name]"));
         nameElement.sendKeys("Unlaunch automated test");
 
-        WebElement keyElement = Browser.driver.findElement(By.cssSelector("input[name=key]"));
-        keyElement.sendKeys("Unlaunch-automated-test");
+//        WebElement keyElement = Browser.driver.findElement(By.cssSelector("input[name=key]"));
+//        keyElement.sendKeys("Unlaunch-automated-test");
 
         WebElement descElement = Browser.driver.findElement(By.cssSelector("input[name=description]"));
         descElement.sendKeys("Automated test selenium");
@@ -79,12 +79,14 @@ public class Registration {
     }
 
     public void skipMembers() {
+        Browser.sleep(5);
         webDriverWait.until(ExpectedConditions.urlContains("/add/members"));
         WebElement btn = Browser.driver.findElement(By.className("__at_btn_skip"));
         btn.click();
     }
 
     public void verifySuccessfullLogin() {
+        Browser.sleep(5);
         webDriverWait.until(ExpectedConditions.urlContains("/features"));
 
         WebElement btn = Browser.driver.findElement(By.className("__at_btn_create"));
