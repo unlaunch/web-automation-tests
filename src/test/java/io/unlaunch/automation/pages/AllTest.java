@@ -336,9 +336,22 @@ public class AllTest {
         String var = eval.evalTargetingRuleForString();
         Assertions.assertEquals("on", var);
     }
-
+    
     @Test
     @Order(39)
+    public void testAddPercentageRolloutTargettingRuleForString() {
+
+        WebElement e = Browser.fluentWait((WebDriver d) -> d.findElement(By.className("__at_link_feature_list")));
+        Browser.click(e);
+
+        e = Browser.fluentWait((WebDriver d) -> d.findElement(By.linkText("test-flag")));
+        Browser.click(e);
+
+        targeting.setTargetingRulePercentageRollout("30", "30", "40");
+    }
+
+    @Test
+    @Order(40)
     public void testAddTargettingRuleForInt() {
         WebElement e = Browser.fluentWait((WebDriver d) -> d.findElement(By.className("__at_link_feature_list")));
         Browser.click(e);
@@ -350,7 +363,7 @@ public class AllTest {
     }
 
     @Test
-    @Order(40)
+    @Order(41)
     public void testSDKEvalFlagTarettingRuleForInt() {
         EvaluateFeatureFlag.initializeClient(sdkKey);
         String var = eval.evalTargetingRuleForInteger();
@@ -358,7 +371,7 @@ public class AllTest {
     }
 
     @Test
-    @Order(41)
+    @Order(42)
     public void testAddTargettingRuleForBoolean() {
         WebElement e = Browser.fluentWait((WebDriver d) -> d.findElement(By.className("__at_link_feature_list")));
         Browser.click(e);
@@ -370,7 +383,7 @@ public class AllTest {
     }
 
     @Test
-    @Order(42)
+    @Order(43)
     public void testSDKEvalFlagTarettingRuleForBoolean() {
         EvaluateFeatureFlag.initializeClient(sdkKey);
         String var = eval.evalTargetingRuleForBoolean();
@@ -378,7 +391,7 @@ public class AllTest {
     }
 
     @Test
-    @Order(43)
+    @Order(44)
     public void testDelTargettingRuleForInt() {
         WebElement e = Browser.fluentWait((WebDriver d) -> d.findElement(By.className("__at_link_feature_list")));
         Browser.click(e);
@@ -390,31 +403,31 @@ public class AllTest {
     }
 
     @Test
-    @Order(44)
+    @Order(45)
     public void testCreateFeatureFlagForVariationPage() {
         featureFlags.createFeatureFlag("test-flag-2-var", "test-flag-2-var", 2);
     }
 
     @Test
-    @Order(45)
+    @Order(46)
     public void testAddVariation() {
         variation.addVariation();
     }
 
     @Test
-    @Order(46)
+    @Order(47)
     public void testCreateFeatureFlagForConf() {
         featureFlags.createFeatureFlag("test-flag-3-conf", "test-flag-3-conf", 3);
     }
 
     @Test
-    @Order(47)
+    @Order(48)
     public void testAddVariantConfigurations() {
         configuration.addConfiguration();
     }
 
     @Test
-    @Order(48)
+    @Order(49)
     public void testSDKEvalVariantConfigs() {
         Assertions.assertTrue( sdkKey != null && !sdkKey.isEmpty(), "SDK key cannot be null: " + sdkKey);
 
@@ -429,55 +442,55 @@ public class AllTest {
     }
 
     @Test
-    @Order(49)
+    @Order(50)
     public void testCreateFeatureFlagForSettings() {
         featureFlags.createFeatureFlag("test-flag-4-settings", "test-flag-4-settings", 4);
     }
 
     @Test
-    @Order(50)
+    @Order(51)
     public void testChangeFlagName() {
         settings.changeFlagName();
     }
 
     @Test
-    @Order(51)
+    @Order(52)
     public void testChangeFlagDescription() {
         settings.changeFlagDescription();
     }
 
     @Test
-    @Order(52)
+    @Order(53)
     public void testSetFlagToClientSide() {
         settings.setFlagToClientSide();
     }
 
     @Test
-    @Order(53)
+    @Order(54)
     public void testAddMember() {
         users.addMember();
     }
 
     @Test
-    @Order(54)
+    @Order(55)
     public void testChangeEnv() {
         sidebar.changeEnviroment();
     }
 
     @Test
-    @Order(55)
+    @Order(56)
     public void testCreateProject() {
         projects.createProject("Selenium Automation Testing");
     }
 
     @Test
-    @Order(56)
+    @Order(57)
     public void testCreateProject2() {
         projects.createProject("Selenium Testing");
     }
 
     @Test
-    @Order(57)
+    @Order(58)
     public void testDeleteProject() {
         projects.deleteProject();
     }
