@@ -157,6 +157,37 @@ public class Targeting {
 
     }
 
+    public void setTargetingRulePercentageRollout(String val1, String val2, String val3) {
+        
+        Browser.sleep(3);
+        WebElement targetRule = Browser.driver.findElement(By.cssSelector("div.__at_select_default div div div input"));
+        Browser.fluentWait(((t) -> {
+            return targetRule;
+        }));
+        targetRule.sendKeys("percentageRollout");
+        targetRule.sendKeys(Keys.ENTER);
+
+        WebElement on = Browser.driver.findElement(By.cssSelector("input.__at_perc_on"));
+        on.sendKeys(Browser.clearInputFieldKeySequence);
+        on.sendKeys(val1);
+
+        WebElement off = Browser.driver.findElement(By.cssSelector("input.__at_perc_off"));
+
+        off.sendKeys(Browser.clearInputFieldKeySequence);
+        off.sendKeys(val2);
+
+        WebElement gray = Browser.driver.findElement(By.cssSelector("input.__at_perc_gray"));
+
+        gray.sendKeys(Browser.clearInputFieldKeySequence);
+        gray.sendKeys(val3);
+
+        Browser.fluentWait((WebDriver t) -> t.findElement(By.cssSelector("button.__at_btn_save"))).click();
+
+        Browser.sleep(2);
+        Browser.fluentWait((WebDriver t) -> t.findElement(By.cssSelector("button.__at_btn_ok"))).click();
+
+    }
+
     public void setDefaultRule(String var) {
         WebElement defaultRule = Browser.driver.findElement(By.cssSelector("div.__at_select_default div div div input"));
         Browser.fluentWait((WebDriver t) -> defaultRule);
