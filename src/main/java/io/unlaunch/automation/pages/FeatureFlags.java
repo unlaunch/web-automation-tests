@@ -20,6 +20,8 @@ public class FeatureFlags {
 
     public void createFeatureFlag(String name, String key, int numberOfVariations) {
 
+        Browser.goTo(Browser.hostname);
+        Browser.sleep(3); // TODO fix. Waits for modal to load
         WebElement e = Browser.fluentWait((WebDriver d) -> d.findElement(By.className("__at_btn_create")));
         Browser.click(e);
 
