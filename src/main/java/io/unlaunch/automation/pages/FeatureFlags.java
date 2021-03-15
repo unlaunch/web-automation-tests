@@ -19,9 +19,10 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 public class FeatureFlags {
 
     public void createFeatureFlag(String name, String key, int numberOfVariations) {
-        WebElement e = Browser.fluentWait((WebDriver d) -> d.findElement(By.className("__at_link_feature_list")));
-        Browser.click(e);
-        e = Browser.fluentWait((WebDriver d) -> d.findElement(By.className("__at_btn_create")));
+
+        Browser.goTo(Browser.hostname);
+        Browser.sleep(3); // TODO fix. Waits for modal to load
+        WebElement e = Browser.fluentWait((WebDriver d) -> d.findElement(By.className("__at_btn_create")));
         Browser.click(e);
 
         Browser.sleep(2); // TODO fix. Waits for modal to load
@@ -57,6 +58,13 @@ public class FeatureFlags {
 
         WebElement btnSave = modal.findElement(By.cssSelector("button[type=submit]"));
         btnSave.submit();
+        
+        Browser.sleep(2); 
+
+        WebElement sdkHelpModal = Browser.driver.switchTo().activeElement();
+        
+        WebElement btnSdkHelpDismiss = sdkHelpModal.findElement(By.className("__at_btn_dismiss"));
+        btnSdkHelpDismiss.click();
     }
 
     public void archiveFlag() {

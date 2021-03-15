@@ -132,6 +132,8 @@ public class EvaluateFeatureFlag {
     }
 
     public static String getSdkKey() {
+
+        Browser.goTo(Browser.hostname);
         Browser.sleep(5);
         WebElement settings = driver.findElement(By.className("__at_nav_settings"));
         Browser.fluentWait((WebDriver t) -> settings);

@@ -32,7 +32,7 @@ public class Browser {
 
     public static  final String hostname;
     public static final String clearInputFieldKeySequence;
-    public static final String emailAddress = "unlaunch.test+" + UUID.randomUUID().toString() + "@gmail.com";
+    public static final String emailAddress = "automation-test-" + UUID.randomUUID().toString() + "@gmail.com";
     public static WebDriver driver = new ChromeDriver(getChromeOptions());
     public static final String logoutUrl;
     public static final String apiHostname;
