@@ -86,7 +86,7 @@ public class EvaluateFeatureFlag {
         int offCount = 0;
         int grayCount = 0;
         for (int i = 0; i < 100; i++) {
-            String variation = client.getVariation("test-flag", String.valueOf(i) + "0");
+            String variation = client.getVariation("test-flag", String.valueOf(i) + "1");
             if (variation.equals("on")) {
                 onCount++;
             } else if (variation.equals("off")) {
