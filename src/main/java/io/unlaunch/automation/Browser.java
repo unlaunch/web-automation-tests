@@ -19,7 +19,11 @@ public class Browser {
         Settings settings;
         if (os.toLowerCase().startsWith("mac")) {
             settings = new MacOsSettings();
-        } else {
+        }
+        if (os.toLowerCase().startsWith("win")) {
+            settings = new WinOsSettings();
+        }
+        else {
             settings = new DefaultSettings();
         }
 
