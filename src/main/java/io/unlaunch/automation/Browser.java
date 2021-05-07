@@ -16,8 +16,10 @@ public class Browser {
 
     static {
         String os = System.getProperty("os.name");
+        System.out.println("os: " + os);
         Settings settings;
-        if (os.toLowerCase().startsWith("mac")) {
+        if (os.toLowerCase().contains("mac".toLowerCase())) {
+            System.out.println("here");
             settings = new MacOsSettings();
         }
         if (os.toLowerCase().startsWith("win")) {

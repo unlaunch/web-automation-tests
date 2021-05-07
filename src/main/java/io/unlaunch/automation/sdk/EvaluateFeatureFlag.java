@@ -86,7 +86,7 @@ public class EvaluateFeatureFlag {
         int offCount = 0;
         int grayCount = 0;
         for (int i = 0; i < 100; i++) {
-            String variation = client.getVariation("test-flag", String.valueOf(i) + "0");
+            String variation = client.getVariation("test-flag", String.valueOf(i) + "00");
             if (variation.equals("on")) {
                 onCount++;
             } else if (variation.equals("off")) {
@@ -95,8 +95,7 @@ public class EvaluateFeatureFlag {
                 grayCount++;
             }
         }
-
-        return (onCount >= 28 && onCount <= 36) && (offCount >= 28 && offCount <= 36) && (grayCount >= 28 && grayCount <= 36);
+        return (onCount >= 28 && onCount <= 38) && (offCount >= 28 && offCount <= 38) && (grayCount >= 28 && grayCount <= 38);
     }
 
     public String evalTargetingRuleForString() {

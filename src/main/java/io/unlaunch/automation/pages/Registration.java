@@ -57,9 +57,7 @@ public class Registration {
     }
 
     public void company() {
-        webDriverWait.until(ExpectedConditions.urlContains("/company"));
-        WebElement button = Browser.driver.findElement(By.tagName("button"));
-        Browser.click(button);
+        Browser.fluentWait((WebDriver d) -> d.findElement(By.className("__at_btn_company"))).click();
     }
 
     public void createFirstProject() {
