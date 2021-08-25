@@ -52,8 +52,8 @@ public class Registration {
 
     public void otp() {
         Browser.fluentWait((WebDriver d) -> d.findElement(By.cssSelector("input[type=tel]"))).sendKeys("455148");
-        WebElement button = Browser.driver.findElement(By.tagName("button"));
-        button.submit();
+        //WebElement button = Browser.driver.findElement(By.tagName("button"));
+        //button.submit();
     }
 
     public void company() {
