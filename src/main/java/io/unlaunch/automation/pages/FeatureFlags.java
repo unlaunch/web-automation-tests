@@ -11,6 +11,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+ import org.openqa.selenium.interactions.Actions; 
 
 /**
  *
@@ -95,9 +96,10 @@ public class FeatureFlags {
         deleteBtn.click();
         
         Browser.sleep(2);
-        Browser.fluentWait((WebDriver t) -> t.findElement(By.cssSelector(".\\__at_btn_ok"))).click();
-
-
+        WebElement okayBtn = Browser.driver.findElement(By.className("__at_btn_ok"));
+        Actions actions = new Actions(Browser.driver); 
+        actions.moveToElement(okayBtn); 
+        actions.click();
     }
     
     public void deleteFlag() {
