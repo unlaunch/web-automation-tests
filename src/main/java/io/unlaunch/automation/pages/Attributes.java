@@ -23,10 +23,12 @@ public class Attributes {
         WebElement e = Browser.driver.findElement(By.className("__at_link_attributes_list"));
         Browser.fluentWait((WebDriver t) -> e);
         Browser.click(e);
+        Browser.sleep(2);
 
         WebElement btn = Browser.driver.findElement(By.cssSelector("button.__at_btn_create"));
         Browser.fluentWait((WebDriver t) -> btn);
         Browser.click(btn);
+        Browser.sleep(2);
 
         WebElement input = Browser.driver.findElement(By.cssSelector("input.__at_name"));
         Browser.fluentWait((WebDriver t) -> input);
@@ -37,5 +39,7 @@ public class Attributes {
 
         WebElement save = Browser.driver.findElement(By.cssSelector("button.__at_btn_save"));
         save.submit();
+        Browser.sleep(2);
+        
     }
 }
