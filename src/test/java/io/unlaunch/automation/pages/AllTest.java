@@ -1,4 +1,4 @@
-/*
+	/*
  * To change this license header, choose License Headers Settings Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template Settings the editor.
@@ -114,7 +114,7 @@ public class AllTest {
     @Test
     @Order(11)
     public void testCreateFeatureFlag() {
-        featureFlags.createFeatureFlag("test-archive-flag","test-archive-flag", 2);
+        featureFlags.createFeatureFlag("test-archive-flag","test-archive-flag", 2, true);
     }
 
     @Test
@@ -180,7 +180,7 @@ public class AllTest {
     @Test
     @Order(17)
     public void testCreateFlagWith3Variations() {
-        featureFlags.createFeatureFlag("test-flag", "test-flag", 3);
+        featureFlags.createFeatureFlag("test-flag", "test-flag", 3, false);
     }
 
     @Test
@@ -405,7 +405,7 @@ public class AllTest {
     @Test
     @Order(45)
     public void testCreateFeatureFlagForVariationPage() {
-        featureFlags.createFeatureFlag("test-flag-2-var", "test-flag-2-var", 2);
+        featureFlags.createFeatureFlag("test-flag-2-var", "test-flag-2-var", 2, false);
     }
 
     @Test
@@ -417,7 +417,7 @@ public class AllTest {
     @Test
     @Order(47)
     public void testCreateFeatureFlagForConf() {
-        featureFlags.createFeatureFlag("test-flag-3-conf", "test-flag-3-conf", 3);
+        featureFlags.createFeatureFlag("test-flag-3-conf", "test-flag-3-conf", 3,false);
     }
 
     @Test
@@ -444,7 +444,7 @@ public class AllTest {
     @Test
     @Order(50)
     public void testCreateFeatureFlagForSettings() {
-        featureFlags.createFeatureFlag("test-flag-4-settings", "test-flag-4-settings", 4);
+        featureFlags.createFeatureFlag("test-flag-4-settings", "test-flag-4-settings", 4, false);
     }
 
     @Test

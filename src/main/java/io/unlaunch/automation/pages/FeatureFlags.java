@@ -19,17 +19,19 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
  */
 public class FeatureFlags {
 
-    public void createFeatureFlag(String name, String key, int numberOfVariations) {
+    public void createFeatureFlag(String name, String key, int numberOfVariations, Boolean welcomeScreen) {
 
         Browser.goTo(Browser.hostname);
         Browser.sleep(3); // TODO fix. Waits for modal to load
         
-        WebElement closeBtn = Browser.fluentWait((WebDriver d) -> d.findElement(By.className("__at_btn_close")));
-        Browser.click(closeBtn);
-
+        if(welcomeScreen){
+            WebElement closeBtn = Browser.fluentWait((WebDriver d) -> d.findElement(By.className("__at_btn_close")));
+            Browser.click(closeBtn);
+        }
+        
         Browser.sleep(2); // TODO fix. Waits for modal to load
 
-        WebElement e = Browser.fluentWait((WebDriver d) -> d.findElement(By.className("__at_btn_create")));
+          WebElement e = Browser.fluentWait((WebDriver d) -> d.findElement(By.className("__at_btn_create")));
         Browser.click(e);
 
         Browser.sleep(2); // TODO fix. Waits for modal to load
