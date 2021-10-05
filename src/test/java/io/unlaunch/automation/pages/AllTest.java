@@ -114,7 +114,7 @@ public class AllTest {
     @Test
     @Order(11)
     public void testCreateFeatureFlag() {
-        featureFlags.createFeatureFlag("test-archive-flag","test-archive-flag", 2, true);
+        featureFlags.createFeatureFlag("test-archive-flag","test-archive-flag", 2);
     }
 
     @Test
@@ -180,7 +180,7 @@ public class AllTest {
     @Test
     @Order(17)
     public void testCreateFlagWith3Variations() {
-        featureFlags.createFeatureFlag("test-flag", "test-flag", 3, false);
+        featureFlags.createFeatureFlag("test-flag", "test-flag", 3);
     }
 
     @Test
@@ -405,7 +405,7 @@ public class AllTest {
     @Test
     @Order(45)
     public void testCreateFeatureFlagForVariationPage() {
-        featureFlags.createFeatureFlag("test-flag-2-var", "test-flag-2-var", 2, false);
+        featureFlags.createFeatureFlag("test-flag-2-var", "test-flag-2-var", 2);
     }
 
     @Test
@@ -417,7 +417,7 @@ public class AllTest {
     @Test
     @Order(47)
     public void testCreateFeatureFlagForConf() {
-        featureFlags.createFeatureFlag("test-flag-3-conf", "test-flag-3-conf", 3,false);
+        featureFlags.createFeatureFlag("test-flag-3-conf", "test-flag-3-conf", 3);
     }
 
     @Test
@@ -444,7 +444,7 @@ public class AllTest {
     @Test
     @Order(50)
     public void testCreateFeatureFlagForSettings() {
-        featureFlags.createFeatureFlag("test-flag-4-settings", "test-flag-4-settings", 4, false);
+        featureFlags.createFeatureFlag("test-flag-4-settings", "test-flag-4-settings", 4);
     }
 
     @Test
