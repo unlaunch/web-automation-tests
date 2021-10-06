@@ -22,6 +22,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
  * @author ghauri
  */
 public class Registration {
+
     private final WebDriverWait webDriverWait = new WebDriverWait(Browser.driver, 5);
 
     public void register() {
@@ -68,7 +69,6 @@ public class Registration {
 
 //        WebElement keyElement = Browser.driver.findElement(By.cssSelector("input[name=key]"));
 //        keyElement.sendKeys("Unlaunch-automated-test");
-
         WebElement descElement = Browser.driver.findElement(By.cssSelector("input[name=description]"));
         descElement.sendKeys("Automated test selenium");
 
@@ -83,14 +83,16 @@ public class Registration {
         btn.click();
     }
 
-    public void verifySuccessfullLogin() {
+    public void verifySuccessfullLogin(String url) {
         Browser.sleep(5);
-        webDriverWait.until(ExpectedConditions.urlContains("/features"));
+        webDriverWait.until(ExpectedConditions.urlContains(url));
 
-        WebElement btn = Browser.driver.findElement(By.className("__at_btn_create"));
-        Browser.fluentWait((WebDriver t) -> btn);
-        if (!btn.isDisplayed()) {
-            throw new RuntimeException("cannot verify it login was successful. Create Flag Button wasn't found");
+        if (url.contains("/features")) {
+            WebElement btn = Browser.driver.findElement(By.className("__at_btn_create"));
+            Browser.fluentWait((WebDriver t) -> btn);
+            if (!btn.isDisplayed()) {
+                throw new RuntimeException("cannot verify it login was successful. Create Flag Button wasn't found");
+            }
         }
     }
 
@@ -101,7 +103,7 @@ public class Registration {
         HttpURLConnection con = (HttpURLConnection) url.openConnection();
         con.setRequestMethod("DELETE");
         con.setRequestProperty("X-Unlaunch-Secret", "49345A");
-        
+
         int responseCode = con.getResponseCode();
         System.out.println("response code : " + responseCode);
     }
