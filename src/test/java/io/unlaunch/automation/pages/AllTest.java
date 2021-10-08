@@ -84,7 +84,7 @@ public class AllTest {
     @Test
     @Order(6)
     public void testVerifySuccessfulLogin() {
-        registration.verifySuccessfullLogin();
+        registration.verifySuccessfullLogin("/tutorial");
     }
 
     @Test
@@ -108,7 +108,7 @@ public class AllTest {
     @Test
     @Order(10)
     public void testIsLoggedIn() {
-        registration.verifySuccessfullLogin();
+        registration.verifySuccessfullLogin("/features");
     }
 
     @Test
