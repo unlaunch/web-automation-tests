@@ -15,6 +15,8 @@ import org.openqa.selenium.interactions.Actions;
 public class Configuration {
 
     public void addConfiguration() {
+        Browser.sleep(2);
+
         Browser.fluentWait((WebDriver t) -> t.findElement(By.cssSelector("#nav-configuration-tab > .text-normal"))).click();
 
         Browser.sleep(1);
