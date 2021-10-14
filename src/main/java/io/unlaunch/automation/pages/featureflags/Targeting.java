@@ -189,6 +189,7 @@ public class Targeting {
     }
 
     public void setDefaultRule(String var) {
+        Browser.sleep(3);
         WebElement defaultRule = Browser.driver.findElement(By.cssSelector("div.__at_select_default div div div input"));
         Browser.fluentWait((WebDriver t) -> defaultRule);
         defaultRule.sendKeys(var);
@@ -202,6 +203,7 @@ public class Targeting {
     }
 
     public void setDefaultVariation(String var) {
+        Browser.sleep(3);
         WebElement defaultRule = Browser.driver.findElement(By.cssSelector("div.__at_select_offvariation div div div input"));
         Browser.fluentWait((WebDriver t) -> defaultRule);
         defaultRule.sendKeys(var);

@@ -19,11 +19,12 @@ import org.openqa.selenium.WebElement;
 public class Settings {
 
     public void changeFlagName() {
-
+        Browser.sleep(3);
         WebElement settings = driver.findElement(By.id("nav-settings-tab"));
         Browser.fluentWait((WebDriver t) -> settings);
         settings.click();
-
+        
+        Browser.sleep(3);
         WebElement flagName = driver.findElement(By.className("__at_name"));
         Browser.fluentWait((WebDriver t) -> flagName);
         flagName.sendKeys(Keys.chord(Keys.CONTROL + "a" + Keys.DELETE));
@@ -36,7 +37,7 @@ public class Settings {
     }
 
     public void changeFlagDescription() {
-
+        Browser.sleep(3);
         WebElement flagDesc = driver.findElement(By.className("__at_desc"));
         Browser.fluentWait((WebDriver t) -> flagDesc);
         flagDesc.sendKeys(Browser.clearInputFieldKeySequence);
@@ -48,6 +49,7 @@ public class Settings {
     }
 
     public void setFlagToClientSide() {
+        Browser.sleep(3);
         WebElement clientAccess = driver.findElement(By.className("__at_check_clientside"));
         Browser.fluentWait((WebDriver t) -> clientAccess);
         clientAccess.click();

@@ -477,23 +477,23 @@ public class AllTest {
         sidebar.changeEnviroment();
     }
 
-    @Test
-    @Order(56)
-    public void testCreateProject() {
-        projects.createProject("Selenium Automation Testing");
-    }
-
-    @Test
-    @Order(57)
-    public void testCreateProject2() {
-        projects.createProject("Selenium Testing");
-    }
-
-    @Test
-    @Order(58)
-    public void testDeleteProject() {
-        projects.deleteProject();
-    }
+//    @Test
+//    @Order(56)
+//    public void testCreateProject() {
+//        projects.createProject("Selenium Automation Testing");
+//    }
+//
+//    @Test
+//    @Order(57)
+//    public void testCreateProject2() {
+//        projects.createProject("Selenium Testing");
+//    }
+//
+//    @Test
+//    @Order(58)
+//    public void testDeleteProject() {
+//        projects.deleteProject();
+//    }
 
     @AfterAll
     public static void finish() {
