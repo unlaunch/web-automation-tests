@@ -49,6 +49,10 @@ public class EvaluateFeatureFlag {
         client.shutdown();
     }
 
+    public String evalFlag(String flag, String identity) {
+        return client.getVariation(flag, identity);
+    }
+
     public String evalInactiveFlagReturnsDefaultVariation() {
 
         String variation = client.getVariation("test-archive-flag", "user-123");
