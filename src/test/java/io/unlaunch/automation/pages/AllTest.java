@@ -27,6 +27,7 @@ public class AllTest {
     private Registration registration = new Registration();
     private Authentication authentication = new Authentication();
     private FeatureFlags featureFlags = new FeatureFlags();
+    private Tutorial tutorial = new Tutorial();
     private Targeting targeting = new Targeting();
     private Attributes attributes = new Attributes();
     private Variation variation = new Variation();
@@ -51,74 +52,82 @@ public class AllTest {
     }
 
     @Test
-    @Order(1)
+    @Order(10)
     public void testFillNewRegistrationForm() throws IOException{
         registration.deleteUserBeforeRegister();
         registration.register();
     }
 
     @Test
-    @Order(2)
+    @Order(20)
     public void testRegisterOtp() {
         registration.otp();
     }
 
     @Test
-    @Order(3)
+    @Order(30)
     public void testRegisterCompany() {
         registration.company();
     }
 
     @Test
-    @Order(4)
+    @Order(40)
     public void testRegisterProject() {
         registration.createFirstProject();
     }
 
     @Test
-    @Order(5)
+    @Order(50)
     public void testRegisterSkipMembers() {
         registration.skipMembers();
     }
 
     @Test
-    @Order(6)
-    public void testVerifySuccessfulLogin() {
-        registration.verifySuccessfullLogin();
+    @Order(60)
+    public void tutorialSuccess() {
+        tutorial.apiEventReceived();
     }
 
+    /*
     @Test
-    @Order(7)
+    @Order(70)
+    public void testVerifySuccessfulLogin() {
+        registration.verifySuccessfulLogin();
+    }
+     */
+
+    @Test
+    @Order(80)
     public void testLogout() {
         authentication.logout();
     }
 
     @Test
-    @Order(8)
+    @Order(90)
     public void testVerifyLogout() {
         Assertions.assertTrue(authentication.verifyLogout() == true);
     }
 
     @Test
-    @Order(9)
+    @Order(100)
     public void testLogin() {
         authentication.login(Browser.emailAddress, "Orca123");
     }
 
     @Test
-    @Order(10)
+    @Order(110)
     public void testIsLoggedIn() {
-        registration.verifySuccessfullLogin();
+        registration.verifySuccessfulLogin();
     }
 
     @Test
-    @Order(11)
+    @Order(120)
     public void testCreateFeatureFlag() {
         featureFlags.createFeatureFlag("test-archive-flag","test-archive-flag", 2);
     }
 
     @Test
-    @Order(12)
+    @Order(130)
     public void testSDKReturnedDefaultVariation() {
         sdkKey = EvaluateFeatureFlag.getSdkKey();
 
@@ -146,13 +155,13 @@ public class AllTest {
     }
 
     @Test
-    @Order(13)
+    @Order(140)
     public void testArchiveFlag() {
         featureFlags.archiveFlag();
     }
 
     @Test
-    @Order(14)
+    @Order(150)
     public void testSDKReturnedControlVariation() {
         Assertions.assertTrue( sdkKey != null && !sdkKey.isEmpty(), "SDK key cannot be null: " + sdkKey);
 
@@ -163,13 +172,13 @@ public class AllTest {
     }
 
     @Test
-    @Order(15)
+    @Order(160)
     public void testdeleteFlag() {
         featureFlags.deleteFlag();
     }
 
     @Test
-    @Order(16)
+    @Order(170)
     public void testSDKAfterDeleteFlagReturnedControlVariation() {
         EvaluateFeatureFlag.initializeClient(sdkKey);
         
@@ -178,31 +187,31 @@ public class AllTest {
     }
 
     @Test
-    @Order(17)
+    @Order(180)
     public void testCreateFlagWith3Variations() {
         featureFlags.createFeatureFlag("test-flag", "test-flag", 3);
     }
 
     @Test
-    @Order(18)
+    @Order(190)
     public void testAddWhiteList() {
         targeting.addWhitelist();
     }
 
     @Test
-    @Order(19)
+    @Order(200)
     public void testClearWhiteList() {
         targeting.removeWhiteList();
     }
 
     @Test
-    @Order(20)
+    @Order(210)
     public void testAdd50UsersToOnVariation() {
         targeting.addWhitelistToOn();
     }
 
     @Test
-    @Order(21)
+    @Order(220)
     public void testSDKWhiteListForOnVariation() {
         EvaluateFeatureFlag.initializeClient(sdkKey);
         
@@ -211,13 +220,13 @@ public class AllTest {
     }
 
     @Test
-    @Order(22)
+    @Order(230)
     public void testAdd25UsersToOffVariation() {
         targeting.addWhitelistToOff();
     }
 
     @Test
-    @Order(23)
+    @Order(240)
     public void testSDKWhiteListForOffVariation() {
         EvaluateFeatureFlag.initializeClient(sdkKey);
         
@@ -226,7 +235,7 @@ public class AllTest {
     }
 
     @Test
-    @Order(24)
+    @Order(250)
     public void testSDKUsingRandomUserIdReturnedDefaultRule() {
         EvaluateFeatureFlag.initializeClient(sdkKey);
         
@@ -240,13 +249,13 @@ public class AllTest {
     }
 
     @Test
-    @Order(25)
+    @Order(260)
     public void testDefaultRulePercentageRollout() {
         targeting.setDefaultRulePercentageRollout("33", "33", "34");
     }
 
     @Test
-    @Order(26)
+    @Order(270)
     public void testSDKEvalFlagUsingDefaultPR() {
         EvaluateFeatureFlag.initializeClient(sdkKey);
         
@@ -255,69 +264,69 @@ public class AllTest {
     }
 
     @Test
-    @Order(27)
+    @Order(280)
     public void testDefaultRulePercentageRolloutAgain() {
         targeting.setDefaultRulePercentageRollout("98", "1", "1");
     }
 
     @Test
-    @Order(28)
+    @Order(290)
     public void testDefaultRuleToGrayVariation() {
         targeting.setDefaultRule("gray");
     }
 
     @Test
-    @Order(29)
+    @Order(300)
     public void testDefaultRuleToOnVariation() {
         targeting.setDefaultRule("on");
     }
 
     @Test
-    @Order(30)
+    @Order(310)
     public void testDefaultRuleToOffVariation() {
         targeting.setDefaultRule("off");
     }
 
     @Test
-    @Order(31)
+    @Order(320)
     public void testDefaultVariationToOnVar() {
         targeting.setDefaultVariation("on");
     }
 
     
     @Test
-    @Order(32)
+    @Order(330)
     public void testDefaultVariationToOffVar() {
         targeting.setDefaultVariation("off");
     }
 
     
     @Test
-    @Order(33)
+    @Order(340)
     public void testDefaultVariationToGrayVar() {
         targeting.setDefaultVariation("gray");
     }
 
     @Test
-    @Order(34)
+    @Order(350)
     public void testCreateNumberAttribute() {
         attributes.createAttribute("ltv", "Number");
     }
 
     @Test
-    @Order(35)
+    @Order(360)
     public void testCreateStringAttribute() {
         attributes.createAttribute("device", "String");
     }
 
     @Test
-    @Order(36)
+    @Order(370)
     public void testCreateBooleanAttribute() {
         attributes.createAttribute("paid", "Boolean");
     }
 
     @Test
-    @Order(37)
+    @Order(380)
     public void testAddTargettingRuleForString() {
 
         WebElement e = Browser.fluentWait((WebDriver d) -> d.findElement(By.className("__at_link_feature_list")));
@@ -330,7 +339,7 @@ public class AllTest {
     }
 
     @Test
-    @Order(38)
+    @Order(390)
     public void testSDKEvalFlagTarettingRuleForString() {
         EvaluateFeatureFlag.initializeClient(sdkKey);
         String var = eval.evalTargetingRuleForString();
@@ -338,7 +347,7 @@ public class AllTest {
     }
     
     @Test
-    @Order(39)
+    @Order(400)
     public void testAddPercentageRolloutTargettingRuleForString() {
 
         WebElement e = Browser.fluentWait((WebDriver d) -> d.findElement(By.className("__at_link_feature_list")));
@@ -351,7 +360,7 @@ public class AllTest {
     }
 
     @Test
-    @Order(40)
+    @Order(410)
     public void testAddTargettingRuleForInt() {
         WebElement e = Browser.fluentWait((WebDriver d) -> d.findElement(By.className("__at_link_feature_list")));
         Browser.click(e);
@@ -363,7 +372,7 @@ public class AllTest {
     }
 
     @Test
-    @Order(41)
+    @Order(420)
     public void testSDKEvalFlagTarettingRuleForInt() {
         EvaluateFeatureFlag.initializeClient(sdkKey);
         String var = eval.evalTargetingRuleForInteger();
@@ -371,7 +380,7 @@ public class AllTest {
     }
 
     @Test
-    @Order(42)
+    @Order(430)
     public void testAddTargettingRuleForBoolean() {
         WebElement e = Browser.fluentWait((WebDriver d) -> d.findElement(By.className("__at_link_feature_list")));
         Browser.click(e);
@@ -383,7 +392,7 @@ public class AllTest {
     }
 
     @Test
-    @Order(43)
+    @Order(440)
     public void testSDKEvalFlagTarettingRuleForBoolean() {
         EvaluateFeatureFlag.initializeClient(sdkKey);
         String var = eval.evalTargetingRuleForBoolean();
@@ -391,7 +400,7 @@ public class AllTest {
     }
 
     @Test
-    @Order(44)
+    @Order(450)
     public void testDelTargettingRuleForInt() {
         WebElement e = Browser.fluentWait((WebDriver d) -> d.findElement(By.className("__at_link_feature_list")));
         Browser.click(e);
@@ -403,31 +412,31 @@ public class AllTest {
     }
 
     @Test
-    @Order(45)
+    @Order(460)
     public void testCreateFeatureFlagForVariationPage() {
         featureFlags.createFeatureFlag("test-flag-2-var", "test-flag-2-var", 2);
     }
 
     @Test
-    @Order(46)
+    @Order(470)
     public void testAddVariation() {
         variation.addVariation();
     }
 
     @Test
-    @Order(47)
+    @Order(480)
     public void testCreateFeatureFlagForConf() {
         featureFlags.createFeatureFlag("test-flag-3-conf", "test-flag-3-conf", 3);
     }
 
     @Test
-    @Order(48)
+    @Order(490)
     public void testAddVariantConfigurations() {
         configuration.addConfiguration();
     }
 
     @Test
-    @Order(49)
+    @Order(500)
     public void testSDKEvalVariantConfigs() {
         Assertions.assertTrue( sdkKey != null && !sdkKey.isEmpty(), "SDK key cannot be null: " + sdkKey);
 
@@ -442,55 +451,55 @@ public class AllTest {
     }
 
     @Test
-    @Order(50)
+    @Order(510)
     public void testCreateFeatureFlagForSettings() {
         featureFlags.createFeatureFlag("test-flag-4-settings", "test-flag-4-settings", 4);
     }
 
     @Test
-    @Order(51)
+    @Order(520)
     public void testChangeFlagName() {
         settings.changeFlagName();
     }
 
     @Test
-    @Order(52)
+    @Order(530)
     public void testChangeFlagDescription() {
         settings.changeFlagDescription();
     }
 
     @Test
-    @Order(53)
+    @Order(540)
     public void testSetFlagToClientSide() {
         settings.setFlagToClientSide();
     }
 
     @Test
-    @Order(54)
+    @Order(550)
     public void testAddMember() {
         users.addMember();
     }
 
     @Test
-    @Order(55)
+    @Order(560)
     public void testChangeEnv() {
         sidebar.changeEnviroment();
     }
 
     @Test
-    @Order(56)
+    @Order(570)
     public void testCreateProject() {
         projects.createProject("Selenium Automation Testing");
     }
 
     @Test
-    @Order(57)
+    @Order(580)
     public void testCreateProject2() {
         projects.createProject("Selenium Testing");
     }
 
     @Test
-    @Order(58)
+    @Order(590)
     public void testDeleteProject() {
         projects.deleteProject();
     }
@@ -501,5 +510,4 @@ public class AllTest {
         Browser.driver.quit();
         EvaluateFeatureFlag.close();
     }
-
 }

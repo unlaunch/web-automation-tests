@@ -6,16 +6,16 @@
 package io.unlaunch.automation.pages;
 
 import io.unlaunch.automation.Browser;
-import java.io.IOException;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 /**
  *
@@ -52,8 +52,10 @@ public class Registration {
 
     public void otp() {
         Browser.fluentWait((WebDriver d) -> d.findElement(By.cssSelector("input[type=tel]"))).sendKeys("455148");
+        /* Verify otp right away after code is entered
         WebElement button = Browser.driver.findElement(By.tagName("button"));
         button.submit();
+        */
     }
 
     public void company() {
@@ -61,13 +63,11 @@ public class Registration {
     }
 
     public void createFirstProject() {
+        Browser.sleep(1);
         webDriverWait.until(ExpectedConditions.urlContains("/project"));
 
         WebElement nameElement = Browser.driver.findElement(By.cssSelector("input[name=name]"));
         nameElement.sendKeys("Unlaunch automated test");
-
-//        WebElement keyElement = Browser.driver.findElement(By.cssSelector("input[name=key]"));
-//        keyElement.sendKeys("Unlaunch-automated-test");
 
         WebElement descElement = Browser.driver.findElement(By.cssSelector("input[name=description]"));
         descElement.sendKeys("Automated test selenium");
@@ -83,7 +83,7 @@ public class Registration {
         btn.click();
     }
 
-    public void verifySuccessfullLogin() {
+    public void verifySuccessfulLogin() {
         Browser.sleep(5);
         webDriverWait.until(ExpectedConditions.urlContains("/features"));
 
