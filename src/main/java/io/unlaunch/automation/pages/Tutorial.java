@@ -28,7 +28,7 @@ public class Tutorial {
         evaluator.close();
 
         // Make sure event is received
-        Browser.sleep(1);
+        Browser.sleep(3);
         WebElement successElement = Browser.driver.findElement(By.className("__at_p_tutorialsuccess"));
         assert successElement.getText().contains("Congratulations");
     }
